@@ -51,17 +51,17 @@ const Login = () => {
     return <Spinner/>
   }
   return (
-    <>
+    <div className='text-center justify-between'>
       <section className='heading'>
-        <h1>
+        <h1 className='font-display'>
            Login
         </h1>
-        <p>Please login in</p>
+        <p className='font-display'>Please login in</p>
       </section>
 
-      <section className='form'>
+      <div className='form '>
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
+          <div className='form-group font-display '>
             <input
               type='email'
               className='form-control'
@@ -73,7 +73,7 @@ const Login = () => {
               required
             />
           </div>
-          <div className='form-group'>
+          <div className='form-group font-display'>
             <input
               type='password'
               className='form-control'
@@ -86,11 +86,11 @@ const Login = () => {
             />
           </div>
           <div className='form-group'>
-            <button className='btn btn-block'>Submit</button>
+            <button className='btn btn-block font-display'>Submit</button>
           </div>
         </form>
-      </section>
-    </>
+      </div>
+    </div>
   )
 }
 export default Login

@@ -61,12 +61,12 @@ function Register() {
   }
  
   return (
-    <>
+    <div className='text-center justify-between'>
       <section className="heading">
         <h1>
           Register
         </h1>
-        <p>Please create an account.</p>
+        <p>Please create an account</p>
       </section>
  
       <section className="form">
@@ -124,7 +124,7 @@ function Register() {
           </div>
         </form>
       </section>
-    </>
+    </div>
   );
 }
  
