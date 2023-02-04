@@ -2,11 +2,15 @@ import {Link, useNavigate} from 'react-router-dom'
 import Logo from './Logo'
 import { useSelector, useDispatch } from 'react-redux'
 import {logout, reset} from '../../features/auth/authSlice'
+import {FiMenu} from 'react-icons/fi'
+import {useState} from 'react'
+
 const Navbar = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {user} = useSelector((state) => state.auth)
+  const [open, setOpen] = useState(false)
 
   const onLogout = ()=>{
     dispatch (logout())
@@ -14,32 +18,43 @@ const Navbar = () => {
     navigate('/')
   }
   return (
-    
-<nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
-  <div className="container flex flex-wrap items-center justify-between mx-auto">
-    <Link to="/" className="flex items-center">
-      <div className='mr-5'>
-      <Logo className="h-6 sm:h-9"/>
-      </div>
-      <div className="flex flex-col">
-        <span className=" text-xl font-semibold whitespace-nowrap dark:text-white font-display">ORTA</span>
-        <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white font-display">Bılımge qūştar bol</span>
-        </div>
-    </Link>
-    {user ? (
-          <li>
-            <button className='btn text-white font-display' onClick={onLogout}>
-               Logout
-            </button>
-          </li>
-        ) : (
-    <div className="w-full md:w-auto flex flex-row justify-between " id="navbar-default">
-        <Link to='/login' className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent font-display mr-10">LOG IN</Link>
-        <Link to='/register' className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent font-display">SIGN UP</Link>
-    </div>)}
+    <>
 
+<nav className=" bg-gray-900  text-gray-200" >
+  <div className="flex items-center justify-between xl:max-w-7xl xl:mx-auto mx-w-full px-[5%] flex-wrap w-full">
+
+
+      <div className='flex'>
+        <Link to="/" className="flex items-center space-x-4 py-3">
+          <div>
+            <Logo className=""/>
+          </div>
+            <div className='hidden md:flex flex-col hover:text-white'>
+              <span className="py-1 font-display">ORTA</span>
+              <span className="py-1 font-display">Bılımge qūştar bol</span>
+            </div>
+        </Link>
+      </div>
+      {user ? (
+            <div className=''>
+              <button className=' font-display' onClick={onLogout}>
+                LOGOUT
+              </button>
+            </div>
+          ) : (
+            <>
+              <FiMenu className='md:hidden block h-6 w-6 cursor-pointer' onClick={()=>setOpen(!open)}/>
+              <nav className={`${open? "block" : "hidden"} w-full md:flex md:items-center md:w-auto`}>
+                <div className='text-base flex justify-between items-center'>
+                  <Link to='/login' className="md:py-5 px-3 block font-display hover:text-white">KIRU</Link>
+                  <Link to='/register' className="md:py-2 px-3 block font-display text-gray-900 bg-green-200 hover:bg-green-300 hover:text-black rounded-xl transition duration-300 uppercase">tırkelu</Link>
+                </div>
+              </nav>
+            </>
+            )}
   </div>
 </nav>
+</>
   )
 }
 export default Navbar

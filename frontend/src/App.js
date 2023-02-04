@@ -11,9 +11,9 @@ function App() {
   return (
     <>
     <Router>
-      <div className='flex flex-col justify-between h-screen'>
+      <div className=''>
       <Navbar/>
-      <main className='self-center'>
+      <main className='flex flex-col w-full min-h-screen bg-gray-900 text-gray-200'>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
