@@ -70,7 +70,7 @@ const Login = () => {
 
           <form onSubmit={onSubmit}>
 
-            <div className='font-display bg-gray-100 w-64 p-2 flex items-center rounded-2xl  mb-3'>
+            <div className='font-display bg-gray-100 w-64 p-2 flex items-center rounded-2xl  mb-1'>
               <FaRegEnvelope className='text-gray-400 m-2'/>
               <input
                 type='email'
@@ -96,14 +96,11 @@ const Login = () => {
                 required
               />
             </div>
-            <div className='flex justify-between w-64 my-5'>
+            <div className='flex justify-between w-64 my-7'>
               <label className='flex items-center text-xs'><input type="checkbox" name='remeber' className='mr-1'/>Esıñe saqta</label>
               <a href="#" className='text-xs'>Qūpiasözdı ūmyttyñyz ba?</a>
             </div>
-
-              <button className="border-2 border-green-300 md:py-2 px-9 font-display text-gray-900 hover:bg-green-300 hover:text-white rounded-xl transition duration-300">KIRU</button>
-
-
+              <button className=" bg-green-200 py-2 px-9 font-display text-gray-900  hover:bg-gray-800 hover:text-white rounded-xl transition duration-300">KIRU</button>
           </form>
 
         </div>
@@ -121,10 +118,10 @@ const Login = () => {
 
         </div>
 
-        <div className='w-2/5 bg-green-500 rounded-tr-2xl rounded-br-2xl py-36 px-12 font-display'>
-          <h2 className='text-xl font-semibold mb-2 uppercase text-white' >Salem, Dos!</h2>
-          <p className='mb-10 text-white'>Bızben saiahatty bastau üşın tırkelıñız!</p>
-          <Link to='/register' className="inline block border-2 border-white md:py-2 px-9 font-display text-white hover:bg-white hover:text-black rounded-xl transition duration-300 uppercase">tırkelu</Link>
+        <div className='w-2/5 bg-green-200 rounded-tr-2xl rounded-br-2xl py-36 px-12 font-display '>
+          <h2 className='text-xl font-semibold mb-16 uppercase text-gray-800' >Salem, Dos!</h2>
+          <p className='mb-10 text-gray-800'>Bızben saiahatty bastau üşın tırkelıñız!</p>
+          <Link to='/register' className="inline block bg-white py-3 px-7 font-display text-gray-800 hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">tırkelu</Link>
 
         </div>
 

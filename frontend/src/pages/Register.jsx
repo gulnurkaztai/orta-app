@@ -4,6 +4,9 @@ import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { register, reset } from '../features/auth/authSlice';
 import Spinner from '../components/spinner/Spinner';
+import { Link } from 'react-router-dom'
+import {FaGithub, FaFacebook, FaGoogle, FaRegEnvelope, FaRegUserCircle} from 'react-icons/fa'
+import {BiLock} from 'react-icons/bi'
  
 function Register() {
   const [formData, setFormData] = useState({
@@ -61,20 +64,34 @@ function Register() {
   }
  
   return (
-    <div className='text-center justify-between'>
-      <section className="heading">
-        <h1>
-          Register
-        </h1>
-        <p>Please create an account</p>
-      </section>
+    <div className='flex flex-col items-center justify-center w-full flex-1 text-center text-gray-800'>
+      <div className='bg-white rounded-2xl shadow-2xl shadow-green-300 flex flex-row w-3/5 max-w-4xl'>
+
+      <div className='w-2/5 bg-green-200 rounded-tl-2xl rounded-bl-2xl py-36 px-12 font-display '>
+          <h2 className='text-xl font-semibold mb-16 uppercase text-gray-800' >Qaita keluıñızben!</h2>
+          <p className='mb-10 text-gray-800'>Bız sızdı sağyndyq 🙃</p>
+          <Link to='/login' className="inline block bg-white py-3 px-7 font-display text-gray-800 hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">KIRU</Link>
+
+        </div>
+
+        <div className='w-3/5 p-5'>
+          <div className='py-5'>
+            <h1 className='font-display font-semibold text-2xl uppercase'>
+            tırkelu
+            </h1>
+          </div>
+          <p className='font-display  mb-3'>Avtorizasiadan ötıñız</p>
+
+        {/* Sign UP Form */}
+        <div className='flex flex-col items-center'>
  
-      <section className="form">
         <form onSubmit={onSubmit}>
-          <div className="form-group">
+
+        <div className='font-display bg-gray-100 w-64 p-2 flex items-center rounded-2xl  mb-1'>
+            <FaRegUserCircle className='text-gray-400 m-2'/>
             <input
               type="text"
-              className="form-control"
+              className="bg-gray-100 outline-none text-sm flex-1"
               id="name"
               name="name"
               value={name}
@@ -83,10 +100,11 @@ function Register() {
               required
             />
           </div>
-          <div className="form-group">
+          <div className='font-display bg-gray-100 w-64 p-2 flex items-center rounded-2xl mb-1'>
+          <FaRegEnvelope className='text-gray-400 m-2'/>
             <input
               type="email"
-              className="form-control"
+              className="bg-gray-100 outline-none text-sm flex-1"
               id="email"
               name="email"
               value={email}
@@ -95,10 +113,11 @@ function Register() {
               required
             />
           </div>
-          <div className="form-group">
+          <div className='font-display bg-gray-100 w-64 p-2 flex items-center rounded-2xl mb-1'>
+          <BiLock className='text-gray-400 m-2'/>
             <input
               type="password"
-              className="form-control"
+              className="bg-gray-100 outline-none text-sm flex-1"
               id="password"
               name="password"
               value={password}
@@ -107,10 +126,11 @@ function Register() {
               required
             />
           </div>
-          <div className="form-group">
+          <div className='font-display bg-gray-100 w-64 p-2 flex items-center rounded-2xl mb-3'>
+          <BiLock className='text-gray-400 m-2'/>
             <input
               type="password"
-              className="form-control"
+              className="bg-gray-100 outline-none text-sm flex-1"
               id="password2"
               name="password2"
               value={password2}
@@ -119,12 +139,25 @@ function Register() {
               required
             />
           </div>
-          <div className="form-group">
-            <button className="btn btn-block">Submit</button>
-          </div>
-        </form>
-      </section>
+
+          <button className=" bg-green-200 py-2 px-9 font-display text-gray-900  hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">tırkelu</button>
+
+          </form>
     </div>
+
+          {/* log in with social media */}
+          <div className='border-2 w-60 mb-2 inline-block my-4'></div>
+      <p className='mb-2 font-display text-gray-400'>NEMESE </p>
+        <p className='font-display text-gray-400 mb-5'>äleumettık jelıñızben kırıñız</p>
+        <div className='flex justify-center my-2'>
+          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaFacebook/></Link>
+          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaGithub/></Link>
+          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaGoogle/></Link>
+        </div>
+    </div>
+    </div>
+    </div>
+
   );
 }
  
