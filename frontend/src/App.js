@@ -6,6 +6,8 @@ import Login from './pages/Login'
 import Navbar from './components/layout/Navbar'
 import Register from './pages/Register'
 import Footer from './components/layout/Footer'
+import Write from './pages/Write'
+import PrivateRoute from './components/privateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
-
+          <Route path='/write' element={<PrivateRoute/>}>
+            <Route path='/write' element ={<Write/>}/>
+          </Route>
         </Routes>
       </main>
       <Footer/>

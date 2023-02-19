@@ -36,12 +36,16 @@ const Navbar = () => {
         </Link>
       </div>
       {user ? (
+        <>
+          <div className='text-base flex justify-between items-center'>
+                  <Link to='/write' className="md:py-5 px-3 block font-display hover:text-white">JANA JAZBA</Link>
+          </div>
             <div className=''>
               <button className=' font-display' onClick={onLogout}>
                 LOGOUT
               </button>
             </div>
-          ) : (
+         </>) : (
             <>
               <FiMenu className='md:hidden block h-6 w-6 cursor-pointer' onClick={()=>setOpen(!open)}/>
               <nav className={`${open? "block" : "hidden"} w-full md:flex md:items-center md:w-auto`}>
