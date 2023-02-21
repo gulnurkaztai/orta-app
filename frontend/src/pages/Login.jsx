@@ -20,18 +20,8 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const {user, isLoading, isSuccess, isError, message} = useSelector((state)=>state.auth)
+  const {isLoading} = useSelector((state)=>state.auth)
 
-  useEffect(() => {
-    if (isError) {
-      toast.error(message); // Message set in Redux
-    }
-    // Redirect when logged in
-    if (isSuccess && user) {
-      navigate('/');
-      dispatch(reset);
-    }
-  }, [isError, isSuccess, user, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -47,7 +37,12 @@ const Login = () => {
       password
     }
     dispatch(login(userData))
-  
+    .unwrap()
+    .then((user)=>{
+      toast.success(`Logged in as ${user.name}`)
+      navigate('/')
+    })
+    .catch(toast.error)
   }
 
   if(isLoading) {
