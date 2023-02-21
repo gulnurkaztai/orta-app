@@ -16,7 +16,7 @@ function Register() {
     password2: '',
   });
  
-  const { user, isLoading, isSuccess, message, isError } = useSelector(
+  const { isLoading} = useSelector(
     (state) => state.auth
   );
  
@@ -25,16 +25,6 @@ function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
  
-  useEffect(() => {
-    if (isError) {
-      toast.error(message); // Message set in Redux
-    }
-    // Redirect when logged in
-    if (isSuccess && user) {
-      navigate('/');
-      dispatch(reset);
-    }
-  }, [isError, isSuccess, user, message, navigate, dispatch])
  
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -55,7 +45,13 @@ function Register() {
         password,
       };
  
-      dispatch(register(userData));
+      dispatch(register(userData))
+      .unwrap()
+      .then((user)=>{
+        toast.success(`Welcome, ${user.name}`)
+        navigate('/')
+      })
+      .catch(toast.error)
     }
   }
 
