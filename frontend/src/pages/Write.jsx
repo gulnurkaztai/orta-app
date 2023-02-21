@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useState} from "react"
+import {  useDispatch } from "react-redux"
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
-import {createPost, reset} from '../features/posts/postSlice'
-import Spinner from '../components/spinner/Spinner'
+import {createPost} from '../features/posts/postSlice'
 
 const Write = () => {
-    const {user} = useSelector((state) => state.auth)
     const [title,setTitle] = useState('')
     const [text, setText] = useState('')
 
@@ -20,8 +18,8 @@ const Write = () => {
         dispatch(createPost({title, text}))
         .unwrap()
         .then(() => {
-          navigate('/posts')
           toast.success('New post created!')
+          navigate('/posts')
         })
         .catch(toast.error)
         
