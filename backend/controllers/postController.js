@@ -34,7 +34,7 @@ const getPost = asyncHandler(async (req,res)=>{
 // @route POST /api/posts
 // @access Private
 const createPost = asyncHandler(async (req,res)=>{
-    const {title, description, text, tags} = req.body
+    const {title, text, tags} = req.body
 
     if(!title || !description || !text){
         res.status(400)
@@ -44,14 +44,13 @@ const createPost = asyncHandler(async (req,res)=>{
     const post = await Post.create({
         user: req.user.id,
         title ,
-        description,
         text,
         comments: [],
         tags: []
     })
-    if(post){
+
         res.status(201).json(post)
-    } 
+
 })
 
 // @desc Delete user post
