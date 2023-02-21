@@ -4,18 +4,28 @@ import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {createPost} from '../features/posts/postSlice'
 
+
 const Write = () => {
-    const [title,setTitle] = useState('')
-    const [text, setText] = useState('')
+    const [article, setArticle] = useState({
+        title: '',
+        text: ''
+    })
 
-
+const {title, text} = article;
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const onChange = (e) => {
+        setArticle((prevState) => ({
+          ...prevState,
+          [e.target.name]: e.target.value,
+        }));
+      };
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(createPost({title, text}))
+        const userPost = {title, text}
+        dispatch(createPost(userPost))
         .unwrap()
         .then(() => {
           toast.success('New post created!')
@@ -26,7 +36,6 @@ const Write = () => {
     }
 
   return (
-    <>
     <div className='py-12'>
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className=" overflow-hidden shadow-sm sm:rounded-lg">
@@ -40,7 +49,7 @@ const Write = () => {
                                 id="title"
                                 name="title"
                                 value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                onChange={onChange}
                                 placeholder="Taqyryp"
                                 required
                             />
@@ -54,7 +63,7 @@ const Write = () => {
                                     id="text"
                                     name="text"
                                     value={text}
-                                    onChange={(e) => setText(e.target.value)}
+                                    onChange={onChange}
                                     placeholder="Oqiğañyzben bölısıñız... Basqalardy şabyttandyryñyz"
                                     required
                                 />
@@ -65,8 +74,6 @@ const Write = () => {
             </div>
         </div>
     </div>
-
-    </>
   )
 }
 export default Write

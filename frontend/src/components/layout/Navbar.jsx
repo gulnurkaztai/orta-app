@@ -37,7 +37,7 @@ const Navbar = () => {
       {user ? (
         <>
           <div className='text-base flex justify-between items-center'>
-                  <Link to='/write' className="md:py-5 px-3 block font-display hover:text-white">JANA JAZBA</Link>
+                  <Link to='/create' className="md:py-5 px-3 block font-display hover:text-white">JANA JAZBA</Link>
           </div>
             <div className=''>
               <button className=' font-display' onClick={onLogout}>
