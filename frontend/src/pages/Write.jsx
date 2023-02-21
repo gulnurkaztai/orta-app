@@ -7,7 +7,6 @@ import Spinner from '../components/spinner/Spinner'
 
 const Write = () => {
     const {user} = useSelector((state) => state.auth)
-    const {isLoading} = useSelector((state) => state.post)
     const [title,setTitle] = useState('')
     const [text, setText] = useState('')
 
@@ -27,11 +26,6 @@ const Write = () => {
         .catch(toast.error)
         
     }
-
-    if (isLoading) {
-        return <Spinner/>
-    }
-
 
   return (
     <>

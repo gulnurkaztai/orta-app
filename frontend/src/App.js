@@ -8,6 +8,7 @@ import Register from './pages/Register'
 import Footer from './components/layout/Footer'
 import Write from './pages/Write'
 import PrivateRoute from './components/privateRoute/PrivateRoute';
+import Posts from './pages/Posts';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
           <Route path='/register' element={<Register/>}/>
           <Route path='/write' element={<PrivateRoute/>}>
             <Route path='/write' element ={<Write/>}/>
+          </Route>
+          <Route path='/posts' element={<PrivateRoute/>}>
+            <Route path='/posts' element ={<Posts/>}/>
           </Route>
         </Routes>
       </main>
