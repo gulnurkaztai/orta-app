@@ -14,7 +14,7 @@ const createPost = async (postData, token) =>{
     return response.data
 }
 
-// Get user post
+// Get user posts
 const getPosts = async (token) =>{
     const config = {
         headers: {
