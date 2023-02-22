@@ -2,12 +2,11 @@ import {Link} from 'react-router-dom'
 
 const PostItem = ({post}) => {
   return (
-    <li className="py-12">
+    <li className="py-10 font-display">
             <article>
-              <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+              <div className="space-y-2 ">
                 <dl>
-                  <dt></dt>
-                  <dd>
+                  <dd className='text-gray-500'>
                     <time>{new Date(post.createdAt).toLocaleString('en-US')}</time>
                   </dd>
                 </dl>
@@ -15,19 +14,17 @@ const PostItem = ({post}) => {
                   <div className='space-y-6'>
                     <div>
                       <h2 className='text-2xl font-bold leading-8 tracking-tight'>
-                        <Link to="#">{post.title}</Link>
+                        <Link to={`/posts/${post._id}`}>{post.title}</Link>
                       </h2>
-                      <div className='flex flex-wrap'>
-                        #web {/* lists of tags */}
-                    </div>
+
                     </div>
 
-                    <div className='prose max-w-none text-gray-500 dark:text-gray-400'>
+                    <div className='prose max-w-none text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'>
                       Description
                     </div>
                   </div>
                   <div className='text-base font-medium leading-6'>
-                    <Link to={`/posts/${post._id}`} className='text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'>Read more -></Link>
+                    <Link to={`/posts/${post._id}`} className='text-black-100 dark:text-gray-300 hover:text-white dark:hover:text-white'>Read more -></Link>
                   </div>
                 </div>
               </div>
