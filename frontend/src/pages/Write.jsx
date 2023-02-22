@@ -6,6 +6,7 @@ import {createPost} from '../features/posts/postSlice'
 
 
 const Write = () => {
+
     const [article, setArticle] = useState({
         title: '',
         text: ''

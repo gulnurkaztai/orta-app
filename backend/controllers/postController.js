@@ -31,12 +31,12 @@ const getPost = asyncHandler(async (req,res)=>{
 })
 
 // @desc Create new post
-// @route POST /api/posts
+// @route POST /api/create
 // @access Private
 const createPost = asyncHandler(async (req,res)=>{
     const {title, text, tags} = req.body
 
-    if(!title || !description || !text){
+    if(!title || !text){
         res.status(400)
         throw new Error('Please make sure your post has a title, description and the body text')
     }
