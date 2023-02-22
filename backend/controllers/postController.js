@@ -4,10 +4,10 @@ const Post = require('../models/postModel')
 
 // @desc Get user posts
 // @route GET /api/posts
-// @access Private
+// @access Public
 const getPosts = asyncHandler(async (req,res)=>{
 
-    const posts = await Post.find({user: req.user.id});
+    const posts = await Post.find();
 
     res.status(200).json(posts)
 
@@ -15,7 +15,7 @@ const getPosts = asyncHandler(async (req,res)=>{
 
 // @desc Get user post
 // @route GET /api/posts/:id
-// @access Private
+// @access Public
 const getPost = asyncHandler(async (req,res)=>{
     const post = await Post.findById(req.params.id)
 
@@ -23,10 +23,7 @@ const getPost = asyncHandler(async (req,res)=>{
         res.status(404)
         throw new Error('Post not found')
     } 
-    if (post.user.toString() !== req.user.id) {
-        res.status(401)
-        throw new Error('Not Authorized')
-      }
+
     res.status(200).json(post)
 })
 
