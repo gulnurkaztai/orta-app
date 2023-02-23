@@ -1,8 +1,9 @@
 
 const Spinner = () => {
   return (
-    <div>Loading
-        <img src={require('../assets/loader.gif')} alt="loading..." />
+    <div className='mx-auto my-auto'>
+     <iframe src="https://giphy.com/embed/KxFTUO7zBmyZHuGKxB" width="480" height="270" frameBorder="0" className="giphy-embed" allowFullScreen></iframe>
+
     </div>
   )
 }
