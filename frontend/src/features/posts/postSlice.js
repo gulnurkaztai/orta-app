@@ -8,7 +8,7 @@ const initialState = {
 }
 
 // Create new post
-export const createPost = createAsyncThunk('posts/create', async(postData, thunkAPI)=>{
+export const createPost = createAsyncThunk('/posts/create', async(postData, thunkAPI)=>{
     try{
         const token = thunkAPI.getState().auth.user.token
         return await postService.createPost(postData, token)
@@ -31,8 +31,7 @@ export const getPosts = createAsyncThunk('/posts/getAll', async(_, thunkAPI) =>{
 // Get user post
 export const getPost = createAsyncThunk('/posts/get', async(postId, thunkAPI) =>{
     try{
-        const token = thunkAPI.getState().auth.user.token
-        return await postService.getPosts(postId, token)
+        return await postService.getPost(postId)
     } catch (error){
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }

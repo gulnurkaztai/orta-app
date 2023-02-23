@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
 
+
 const PostItem = ({post}) => {
   return (
     <li className="py-10 font-display">
@@ -14,7 +15,7 @@ const PostItem = ({post}) => {
                   <div className='space-y-6'>
                     <div>
                       <h2 className='text-2xl font-bold leading-8 tracking-tight'>
-                        <Link to={`/posts/${post._id}`}>{post.title}</Link>
+                        <Link to={`/posts/${post._id}`}></Link>{post.title}
                       </h2>
 
                     </div>

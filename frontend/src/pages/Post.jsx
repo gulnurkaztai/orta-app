@@ -8,24 +8,28 @@ import {toast} from 'react-toastify'
 
 const Post = () => {
 
-const {post} = useSelector((state)=>state.posts)
+  const {posts} = useSelector((state)=>state.posts)
+console.log(posts)
+
 const dispatch = useDispatch()
 const {postId} = useParams()
-
+console.log(postId)
 useEffect(()=>{
     dispatch(getPost(postId)).unwrap().catch(toast.error)
 },[postId,dispatch])
 
-
+if(!posts){
+  return <Spinner/>
+}
 
   return (
     <div className=''>
     <header className=''>
-      <BackButton />
+
       <h3>
-        Date Created:
+        Hello
       </h3>
- 
+      <p></p>
     </header>
 
 

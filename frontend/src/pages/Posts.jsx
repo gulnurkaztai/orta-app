@@ -10,6 +10,7 @@ import Pagination from "../components/layout/Pagination"
 
 const Posts = () => {
    const {posts} = useSelector((state)=>state.posts)
+  //  console.log(posts)
    const dispatch = useDispatch()
 
    useEffect(() => {
