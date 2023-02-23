@@ -24,7 +24,7 @@ function App() {
           <Route path='/register' element={<Register/>}/>
           <Route path='/create' element={<PrivateRoute><Write/></PrivateRoute>}/>
           <Route path='/posts' element={<Posts/>}/>
-          <Route path='/post/:postId' element={<PrivateRoute><Post/></PrivateRoute>}/>
+          <Route path='/posts/:postId' element={<Post/>}/>
         </Routes>
       </main>
       <Footer/>
