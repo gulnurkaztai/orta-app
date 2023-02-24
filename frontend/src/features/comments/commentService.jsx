@@ -2,16 +2,6 @@ import axios from 'axios'
 
 const API_URL = '/api/posts/'
 
-const createComment = async(commentText, postId, token) => {
-    const config={
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
-    const response = await axios.post(API_URL+postId+'/comments', {text: commentText}, config)
-    return response.data
-}
-
 // Get comments
 
 const getComments = async(postId)=>{
@@ -19,6 +9,15 @@ const getComments = async(postId)=>{
     return response.data
 }
 
+const createComment = async(commentText, postId, token) => {
+    const config={
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.post(API_URL+postId+'/comments', commentText, config)
+    return response.data
+}
 
 
 const commentService = {
@@ -26,4 +25,4 @@ const commentService = {
     getComments,
 }
 
-export default commentService
+export default commentService;

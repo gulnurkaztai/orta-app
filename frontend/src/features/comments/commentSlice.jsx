@@ -4,7 +4,7 @@ import { extractErrorMessage } from '../../utils'
 
 const initialState = {
     comments: null,
-    comment: null,
+
 }
 
 // Create new comment
