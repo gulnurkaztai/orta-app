@@ -2,9 +2,9 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel')
 const Post = require('../models/postModel')
 
-// @desc Get user posts
-// @route GET /api/posts
-// @access Public
+// Get user posts
+// GET /api/posts
+// Public
 const getPosts = asyncHandler(async (req,res)=>{
 
     const posts = await Post.find();
@@ -13,9 +13,9 @@ const getPosts = asyncHandler(async (req,res)=>{
 
 })
 
-// @desc Get user post
-// @route GET /api/posts/:id
-// @access Public
+// Get user post
+// GET /api/posts/:id
+// Public
 const getPost = asyncHandler(async (req,res)=>{
     const post = await Post.findById(req.params.id)
 
@@ -27,9 +27,9 @@ const getPost = asyncHandler(async (req,res)=>{
     res.status(200).json(post)
 })
 
-// @desc Create new post
-// @route POST /api/posts/create
-// @access Private
+// Create new post
+// POST /api/posts/create
+// Private
 const createPost = asyncHandler(async (req,res)=>{
     const {title, text, tags} = req.body
 
@@ -50,9 +50,9 @@ const createPost = asyncHandler(async (req,res)=>{
 
 })
 
-// @desc Delete user post
-// @route delete /api/posts/:id
-// @access Private
+// Delete user post
+// Delete /api/posts/:id
+// Private
 const deletePost = asyncHandler(async (req,res)=>{
     const post = await Post.findById(req.params.id)
 
@@ -70,9 +70,9 @@ const deletePost = asyncHandler(async (req,res)=>{
     res.status(200).json({success: true})
 })
 
-// @desc Update user post
-// @route Update /api/posts/:id
-// @access Private
+// Update user post
+// Update /api/posts/:id
+// Private
 const updatePost = asyncHandler(async (req,res)=>{
     const post = await Post.findById(req.params.id)
 
