@@ -24,7 +24,7 @@ const Navbar = () => {
 
 
       <div className='flex'>
-        <Link to="/" className="flex items-center space-x-4 py-3">
+        <Link to="/" className="flex items-center space-x-4 py-5">
           <div>
             <Logo className=""/>
           </div>
