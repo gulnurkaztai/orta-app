@@ -22,9 +22,14 @@ const createComment = asyncHandler(async (req,res)=>{
 })
 
 // 
-
+const getComments = asyncHandler(async(req,res)=>{
+    const post = await Post.findById(req.params.postId)
+    const comments = await Comment.find({post: req.params.postId});
+    res.status(200).json(comments)
+})
 
 
 module.exports = {
-    createComment
+    createComment,
+    getComments
 }

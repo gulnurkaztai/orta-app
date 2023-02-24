@@ -14,13 +14,14 @@ const createPost = async (postData, token) =>{
     return response.data
 }
 
-// Get user posts
+// Get posts
 const getPosts = async () =>{
 
     const response = await axios.get(API_URL)
     return response.data
 }
-// Get user post
+
+// Get post
 const getPost = async (postId) =>{
     const response = await axios.get(API_URL + postId)
     return response.data

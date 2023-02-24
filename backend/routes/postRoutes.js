@@ -4,8 +4,8 @@ const {getPost, getPosts,createPost, deletePost, updatePost} = require('../contr
 const {protect} = require('../middleware/authMiddleware')
 
 // Reroute into comment router
-const postRouter = require('./commentRoutes')
-router.use('/:postId/comments', postRouter)
+const commentRouter = require('./commentRoutes')
+router.use('/:postId/comments', commentRouter)
 
 router.route('/').get(getPosts).post(protect, createPost)
 router.route('/:id').get(getPost).delete(protect, deletePost).put(protect, updatePost)
