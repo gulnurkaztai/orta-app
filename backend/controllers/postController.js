@@ -1,10 +1,8 @@
 const asyncHandler = require('express-async-handler');
-const User = require('../models/userModel')
 const Post = require('../models/postModel')
 
 // Get user posts
 // GET /api/posts
-// Public
 const getPosts = asyncHandler(async (req,res)=>{
 
     const posts = await Post.find();
@@ -15,7 +13,6 @@ const getPosts = asyncHandler(async (req,res)=>{
 
 // Get user post
 // GET /api/posts/:id
-// Public
 const getPost = asyncHandler(async (req,res)=>{
     const post = await Post.findById(req.params.id)
 
@@ -29,7 +26,6 @@ const getPost = asyncHandler(async (req,res)=>{
 
 // Create new post
 // POST /api/posts/create
-// Private
 const createPost = asyncHandler(async (req,res)=>{
     const {title, text, tags} = req.body
 
@@ -52,7 +48,6 @@ const createPost = asyncHandler(async (req,res)=>{
 
 // Delete user post
 // Delete /api/posts/:id
-// Private
 const deletePost = asyncHandler(async (req,res)=>{
     const post = await Post.findById(req.params.id)
 
@@ -72,7 +67,6 @@ const deletePost = asyncHandler(async (req,res)=>{
 
 // Update user post
 // Update /api/posts/:id
-// Private
 const updatePost = asyncHandler(async (req,res)=>{
     const post = await Post.findById(req.params.id)
 

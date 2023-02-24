@@ -5,9 +5,8 @@ const User = require('../models/userModel')
 
 
 
-// @desc Register a new user
-// @route /api/users
-// @access Public
+// Register a new user
+// /api/users
 const registerUser = asyncHandler(async (req,res)=>{
     const {name, email, password} = req.body
 
@@ -57,9 +56,8 @@ const generateToken = (id)=>{
     })
 }
 
-// @desc Login a user
-// @route /api/users/login
-// @access Public
+// Login a user
+// /api/users/login
 const loginUser = asyncHandler(async(req,res)=>{
 
     const {email, password} = req.body
@@ -79,10 +77,9 @@ const loginUser = asyncHandler(async(req,res)=>{
     }
 })
 
-// @desc Get current user
-// @route /api/users/me
-// @access Private
-
+// Get current user
+// /api/users/me
+// Private
 const getMe = asyncHandler(async (req,res)=>{
     const user = {
         id: req.user._id,

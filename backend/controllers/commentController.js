@@ -1,7 +1,12 @@
 const asyncHandler = require('express-async-handler')
-const User = require('../models/userModel')
 const Post = require('../models/postModel')
 const Comment = require('../models/commentModel')
+
+// 
+const getComments = asyncHandler(async(req,res)=>{
+    const comments = await Comment.find({post: req.params.postId});
+    res.status(200).json(comments)
+})
 
 
 // Create new comment
@@ -13,23 +18,20 @@ const createComment = asyncHandler(async (req,res)=>{
     }
 
     const comment = await Comment.create({
-        user_id: req.user.id,
+        text: req.body.text,
         post_id: req.params.postId,
-        text: req.body.text
+        user_id: req.user.id,
     })
+
+// do i need to push to an array of comments?
 
     res.status(201).json(comment)
 })
 
-// 
-const getComments = asyncHandler(async(req,res)=>{
-    const post = await Post.findById(req.params.postId)
-    const comments = await Comment.find({post: req.params.postId});
-    res.status(200).json(comments)
-})
+
 
 
 module.exports = {
     createComment,
-    getComments
+    getComments,
 }
