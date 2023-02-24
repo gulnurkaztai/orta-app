@@ -8,8 +8,8 @@ import {toast} from 'react-toastify'
 
 const Post = () => {
 
-  const {posts} = useSelector((state)=>state.posts)
-console.log(posts)
+  const {post} = useSelector((state)=>state.posts)
+console.log(post)
 
 const dispatch = useDispatch()
 const {postId} = useParams()
@@ -18,7 +18,7 @@ useEffect(()=>{
     dispatch(getPost(postId)).unwrap().catch(toast.error)
 },[postId,dispatch])
 
-if(!posts){
+if(!post){
   return <Spinner/>
 }
 
@@ -27,7 +27,7 @@ if(!posts){
     <header className=''>
 
       <h3>
-        Hello
+        {post.title}
       </h3>
       <p></p>
     </header>
