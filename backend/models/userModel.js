@@ -4,15 +4,9 @@ const userSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        min: 2,
-        max: 30
+
     },
-    bio: {
-        type: String,
-        required: true,
-        min: 2,
-        max: 150
-    },
+
     email: {
         type: String,
         required: true,
@@ -28,10 +22,7 @@ const userSchema = mongoose.Schema({
         type: String,
         default: ""
     },
-    followers: {
-        type: Array,
-        default: []
-    },
+
     isAdmin: {
         type: Boolean,
         required: true,
