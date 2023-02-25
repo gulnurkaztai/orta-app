@@ -8,7 +8,7 @@ const Home = () => {
     <div className='px-6 py-8 bg-gray-900 text-gray-200'>
             <div class="flex justify-between container mx-auto">
                 <LeftSidebar/>
-                <div class="w-full lg:w-8/12">
+                <div class="w-full lg:w-8/12 bg-gray-800 rounded-2xl">
                     <Posts/>
 
                     
