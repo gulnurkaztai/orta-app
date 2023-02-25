@@ -17,13 +17,24 @@ const postSchema = mongoose.Schema({
         trim: true,
         required: true
       },
-      comments: [{
+    selectedFile: {
+        type: String
+      },
+    comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment'
       }],
-    tags: [String]
+      likeCount: {
+        type: Number,
+        default: 0
+      },
+    tags: [String],
+    createdAt: {
+        type: Date,
+        default: new Date()
+    }
 },{
-    timestamps: true
+    
 })
 
 module.exports = mongoose.model('Post', postSchema)
