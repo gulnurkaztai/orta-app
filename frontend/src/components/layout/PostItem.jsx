@@ -21,7 +21,7 @@ const PostItem = ({post}) => {
                     </div>
 
                     <div className='prose max-w-none text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'>
-                      Description
+                      {post.text.substring(0,250)}...
                     </div>
                   </div>
                   <div className='text-base font-medium leading-6'>

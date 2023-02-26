@@ -17,7 +17,7 @@ function Register() {
   });
  
   const { isLoading} = useSelector(
-    (state) => state.auth
+    (state) => state.users
   );
  
   const { name, email, password, password2 } = formData;

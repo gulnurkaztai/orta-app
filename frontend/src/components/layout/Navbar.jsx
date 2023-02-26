@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import {logout, reset} from '../../features/auth/authSlice'
 import {FiMenu} from 'react-icons/fi'
 import {useState} from 'react'
+import {BsToggleOn} from 'react-icons/bs'
 
 const Navbar = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {user} = useSelector((state) => state.auth)
+  const {user} = useSelector((state) => state.users)
   const [open, setOpen] = useState(false)
 
   const onLogout = ()=>{
@@ -51,6 +52,7 @@ const Navbar = () => {
                 <div className='text-base flex justify-between items-center'>
                   <Link to='/login' className="md:py-5 px-3 block font-display hover:text-white">KIRU</Link>
                   <Link to='/register' className="md:py-2 px-3 block font-display text-gray-900 bg-green-200 hover:bg-green-300 hover:text-black rounded-xl transition duration-300 uppercase">tırkelu</Link>
+                  {/* <button aria-label='Toggle Dark Mode' type='button' className='ml-1 mr-1 h-8 w-8 p-1 sm:ml-4'><BsToggleOn/></button> */}
                 </div>
               </nav>
             </>

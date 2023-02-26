@@ -35,8 +35,8 @@ const Posts = () => {
           </div>
         </div>
         <div className="mx-auto my-auto">
-                    <Pagination/>
-                    </div>
+                    
+        </div>
     </div>
   )
 }

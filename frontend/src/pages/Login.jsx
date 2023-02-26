@@ -20,7 +20,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const {isLoading} = useSelector((state)=>state.auth)
+  const {isLoading} = useSelector((state)=>state.users)
 
 
   const onChange = (e) => {
@@ -39,7 +39,7 @@ const Login = () => {
     dispatch(login(userData))
     .unwrap()
     .then((user)=>{
-      toast.success(`Logged in as ${user.name}`)
+      toast.success(`Salem, ${user.name}`)
       navigate('/')
     })
     .catch(toast.error)

@@ -30,7 +30,7 @@ const {title, text} = article;
         .unwrap()
         .then(() => {
           toast.success('New post created!')
-          navigate('/posts')
+          navigate(`/posts/${userPost._id}`)
         })
         .catch(toast.error)
         
@@ -43,10 +43,10 @@ const {title, text} = article;
                 <div className="p-6  border-gray-200">
                 <form onSubmit={onSubmit}>
                         <div className='font-display mb-4'>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Taqyryp <span className="text-red-500">*</span></label>
+                            <label className="block mb-2 text-sm font-medium text-gray-100 dark:text-white">Taqyryp <span className="text-red-500">*</span></label>
                             <input
                                 type="text"
-                                className="border-2 border-gray-300 bg-gray-100 p-2 rounded-2xl w-full"
+                                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
                                 id="title"
                                 name="title"
                                 value={title}

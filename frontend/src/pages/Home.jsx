@@ -10,8 +10,6 @@ const Home = () => {
                 <LeftSidebar/>
                 <div class="w-full lg:w-8/12 bg-gray-800 rounded-2xl">
                     <Posts/>
-
-                    
                 </div>
                 <RightSidebar/>
             </div>
