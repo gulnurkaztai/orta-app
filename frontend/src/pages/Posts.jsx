@@ -23,13 +23,13 @@ const Posts = () => {
    }
 
   return (
-    <div className='flex h-screen flex-col '>
+    <div className='flex h-screen flex-col overflow-y-scroll'>
 
         <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className='space-y-2 pt-6 pl-6 pb-8 md:space-y-5'>
           <Tabs/>
           <ul className='divide-y divide-gray-200 dark:divide-gray-700'>
-          {posts.slice(0,3).map((post)=>(
+          {posts.map((post)=>(
             <PostItem key={post._id} post={post}/>
             ))}
             </ul>

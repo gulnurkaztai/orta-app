@@ -3,7 +3,7 @@ import commentService from '../posts/postService'
 import { extractErrorMessage } from '../../utils'
 
 const initialState = {
-    comments: null,
+    comments: [],
     comment: null
 }
 
@@ -17,14 +17,7 @@ export const createComment = createAsyncThunk('/comments/new-commment', async({c
     }
 })
 
-// Get comments
-export const getComments = createAsyncThunk('/comments/getAll', async(postId, thunkAPI) =>{
-    try{
-        return await commentService.getComments(postId)
-    } catch (error){
-        return thunkAPI.rejectWithValue(extractErrorMessage(error))
-    }
-})
+
 
 
 
@@ -35,9 +28,6 @@ export const commentSlice = createSlice({
         builder
             .addCase(createComment.fulfilled, (state,action)=>{
                 state.comments.push(action.payload)
-            })
-            .addCase(getComments.fulfilled, (state, action)=>{
-                state.comments = action.payload
             })
     }
 })

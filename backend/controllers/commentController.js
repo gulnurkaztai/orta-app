@@ -23,7 +23,7 @@ const createComment = asyncHandler(async (req,res)=>{
         user_id: req.user.id,
     })
 
-    const relatedPost = await Post.updateOne({_id:req.params.postId},{$push: { comments: comment} })
+    await Post.updateOne({_id:req.params.postId},{$push: { comments: comment} })
 
 
 // do i need to push to an array of comments?

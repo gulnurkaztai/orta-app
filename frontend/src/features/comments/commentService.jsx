@@ -2,12 +2,6 @@ import axios from 'axios'
 
 const API_URL = '/api/posts/'
 
-// Get comments
-
-const getComments = async(postId)=>{
-    const response = await axios.get(API_URL+postId+'/comments')
-    return response.data
-}
 
 const createComment = async(commentText, postId, token) => {
     const config={
