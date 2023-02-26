@@ -24,6 +24,11 @@ useEffect(()=>{
 const onCommentSubmit = (e) =>{
   e.preventDefault()
   dispatch(createComment({commentText, postId}))
+  .unwrap()
+  .then(() => {
+    setCommentText('')
+  })
+  .catch(toast.error)
 }
 
 if(!post){

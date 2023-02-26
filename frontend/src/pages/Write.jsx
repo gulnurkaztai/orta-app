@@ -30,7 +30,7 @@ const {title, text} = article;
         .unwrap()
         .then(() => {
           toast.success('New post created!')
-          navigate(`/posts/${post._id}`)
+          navigate(`/posts/`)
         })
         .catch(toast.error)
         

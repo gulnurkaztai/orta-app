@@ -36,11 +36,14 @@ const createPost = asyncHandler(async (req,res)=>{
 
     const post = await Post.create({
         user_id: req.user.id,
+        user_name: req.user.name,
         title ,
         text,
         comments: [],
         tags: []
     })
+
+    await Post.updateOne({_id:req.params.postId},{$push: { posts: post, $sort: {createdAt: 1}} })
 
         res.status(201).json(post)
 

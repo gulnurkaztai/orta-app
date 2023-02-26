@@ -21,7 +21,7 @@ app.get('/', (req,res)=>{
 // Routes
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/posts', require('./routes/postRoutes'))
-app.use('/api/posts/:id', require('./routes/likeRoutes'))
+app.use('/api/posts', require('./routes/likeRoutes'))
 // Middlewares
 app.use(errorHandler)
 

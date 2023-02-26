@@ -3,14 +3,14 @@ import commentService from '../posts/postService'
 import { extractErrorMessage } from '../../utils'
 
 const initialState = {
-    comments: [],
+    comments: null,
     comment: null
 }
 
 // Create new comment
-export const createComment = createAsyncThunk('/comments/new-commment', async({commentText, postId}, thunkAPI)=>{
+export const createComment = createAsyncThunk('comments/new', async({commentText, postId}, thunkAPI)=>{
     try{
-        const token = thunkAPI.getState().auth.user.token
+        const token = thunkAPI.getState().users.user.token
         return await commentService.createComment(commentText, postId, token)
     } catch(error){
         return thunkAPI.rejectWithValue(extractErrorMessage(error))

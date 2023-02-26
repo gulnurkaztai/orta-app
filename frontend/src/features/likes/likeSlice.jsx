@@ -6,7 +6,7 @@ const initialState = {
     likeCount: 0
 }
 
-export const likePost = createAsyncThunk('/posts/get', async(postId, thunkAPI) =>{
+export const likePost = createAsyncThunk('/posts/get/likes', async(postId, thunkAPI) =>{
     try{
         console.log("thunk")
         console.log(postId)
