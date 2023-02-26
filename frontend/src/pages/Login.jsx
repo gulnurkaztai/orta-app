@@ -116,7 +116,7 @@ const Login = () => {
         <div className='w-2/5 bg-green-200 rounded-tr-2xl rounded-br-2xl py-36 px-12 font-display '>
           <h2 className='text-xl font-semibold mb-16 uppercase text-gray-800' >Salem, Dos!</h2>
           <p className='mb-10 text-gray-800'>Bızben saiahatty bastau üşın tırkelıñız!</p>
-          <Link to='/register' className="inline block bg-white py-3 px-7 font-display text-gray-800 hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">tırkelu</Link>
+          <Link to='/register' className="block bg-white py-3 px-7 font-display text-gray-800 hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">tırkelu</Link>
 
         </div>
 

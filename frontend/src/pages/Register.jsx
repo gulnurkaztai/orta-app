@@ -66,7 +66,7 @@ function Register() {
       <div className='w-2/5 bg-green-200 rounded-tl-2xl rounded-bl-2xl py-36 px-12 font-display '>
           <h2 className='text-xl font-semibold mb-16 uppercase text-gray-800' >Qaita keluıñızben!</h2>
           <p className='mb-10 text-gray-800'>Bız sızdı sağyndyq 🙃</p>
-          <Link to='/login' className="inline block bg-white py-3 px-7 font-display text-gray-800 hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">KIRU</Link>
+          <Link to='/login' className="block bg-white py-3 px-7 font-display text-gray-800 hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">KIRU</Link>
 
         </div>
 
