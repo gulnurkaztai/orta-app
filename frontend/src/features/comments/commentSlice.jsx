@@ -8,7 +8,7 @@ const initialState = {
 }
 
 // Create new comment
-export const createComment = createAsyncThunk('comments/new-commment', async({commentText, postId}, thunkAPI)=>{
+export const createComment = createAsyncThunk('/comments/new-commment', async({commentText, postId}, thunkAPI)=>{
     try{
         const token = thunkAPI.getState().auth.user.token
         return await commentService.createComment(commentText, postId, token)
@@ -18,7 +18,7 @@ export const createComment = createAsyncThunk('comments/new-commment', async({co
 })
 
 // Get comments
-export const getComments = createAsyncThunk('comments/getAll', async(postId, thunkAPI) =>{
+export const getComments = createAsyncThunk('/comments/getAll', async(postId, thunkAPI) =>{
     try{
         return await commentService.getComments(postId)
     } catch (error){

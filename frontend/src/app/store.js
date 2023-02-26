@@ -6,7 +6,7 @@ import likeReducer from '../features/likes/likeSlice'
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
+    users: authReducer,
     posts: postReducer,
     comments: commentReducer,
     likes: likeReducer

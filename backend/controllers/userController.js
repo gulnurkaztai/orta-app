@@ -89,12 +89,18 @@ const getMe = asyncHandler(async (req,res)=>{
     res.status(200).json(user)
 })
 
+// Get all users
 
+const getUsers = asyncHandler(async (req, res)=>{
+    const users = await User.find();
+    res.status(200).json(users)
+})
 
 
 
 module.exports = {
     registerUser,
     loginUser,
-    getMe
+    getMe,
+    getUsers
 }

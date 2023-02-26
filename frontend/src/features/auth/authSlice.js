@@ -5,6 +5,7 @@ import {extractErrorMessage} from '../../utils'
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
+    users: null,
     user: user? user:null,
     isLoading: false,
 }
@@ -14,7 +15,7 @@ export const register = createAsyncThunk('auth/register', async(user, thunkAPI)=
         return await authService.register(user)
 
     } catch (error) {
-        return thunkAPI.rejectWithValue(error)
+        return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }
 })
 
@@ -23,13 +24,21 @@ export const login = createAsyncThunk('auth/login', async(user, thunkAPI)=>{
         return await authService.login(user)
 
     } catch (error) {
-        return thunkAPI.rejectWithValue(error)
+        return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }
 })
 
 export const logout = createAction('auth/logout', ()=>{
     authService.logout()
     return{}
+})
+
+export const getUsers = createAsyncThunk('/users/getAll', async(_, thunkAPI) =>{
+    try {
+        return await authService.getUsers()
+    } catch (error) {
+        return thunkAPI.rejectWithValue(extractErrorMessage(error))
+    }
 })
 
 export const authSlice = createSlice({
@@ -63,6 +72,9 @@ export const authSlice = createSlice({
 
         .addCase(login.rejected, (state, action)=>{
             state.isLoading=false
+        })
+        .addCase(getUsers.fulfilled, (state, action) =>{
+            state.users = action.payload
         })
     }
 })

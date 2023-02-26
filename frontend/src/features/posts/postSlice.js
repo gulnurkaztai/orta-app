@@ -10,7 +10,8 @@ const initialState = {
 // Create new post
 export const createPost = createAsyncThunk('/posts/create', async(postData, thunkAPI)=>{
     try{
-        const token = thunkAPI.getState().auth.user.token
+        const token = thunkAPI.getState().users.user.token
+        console.log(thunkAPI.getState())
         return await postService.createPost(postData, token)
     } catch(error){
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
@@ -18,7 +19,6 @@ export const createPost = createAsyncThunk('/posts/create', async(postData, thun
 })
 
 // Get posts
-
 export const getPosts = createAsyncThunk('/posts/getAll', async(_, thunkAPI) =>{
     try{
 
@@ -50,6 +50,9 @@ export const postSlice = createSlice({
             state.posts = action.payload
         })
         .addCase(getPost.fulfilled, (state,action) =>{
+            state.post = action.payload
+        })
+        .addCase(createPost.fulfilled, (state, action)=>{
             state.post = action.payload
         })
     },
