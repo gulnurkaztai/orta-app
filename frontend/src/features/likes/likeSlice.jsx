@@ -8,11 +8,14 @@ const initialState = {
 
 export const likePost = createAsyncThunk('/posts/get', async(postId, thunkAPI) =>{
     try{
+        console.log("thunk")
+        console.log(postId)
         return await likeService.likePost(postId)
     } catch (error){
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }
 })
+
 
 export const likeSlice = createSlice({
     name: 'like',
@@ -20,6 +23,9 @@ export const likeSlice = createSlice({
     extraReducers: (builder) =>{
         builder.addCase(likePost.fulfilled, (state)=>{
             state.likeCount ++;
+        })
+        .addCase(likePost.rejected, (state)=>{
+            console.log(state)
         })
     }
 

@@ -78,8 +78,8 @@ if(!post){
                       <div className="flex items-center">
                           <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
                                   className="mr-2 w-6 h-6 rounded-full"
-                                  src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                                  alt="Michael Gough"/>Michael Gough</p>
+                                  src=""
+                                  alt=""/></p>
                           <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
                                   title="February 8th, 2022">Feb. 8, 2022</time></p>
                       </div>
@@ -130,8 +130,8 @@ if(!post){
                       <div className="flex items-center">
                           <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
                                   className="mr-2 w-6 h-6 rounded-full"
-                                  src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                  alt="Jese Leos"/>Jese Leos</p>
+                                  src=""
+                                  alt=""/></p>
                           <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-12"
                                   title="February 12th, 2022">Feb. 12, 2022</time></p>
                       </div>
@@ -180,7 +180,7 @@ if(!post){
                       <div className="flex items-center">
                           <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
                                   className="mr-2 w-6 h-6 rounded-full"
-                                  src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+                                  src=""
                                   alt="Bonnie Green"/>Bonnie Green</p>
                           <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-03-12"
                                   title="March 12th, 2022">Mar. 12, 2022</time></p>
@@ -230,7 +230,7 @@ if(!post){
                       <div className="flex items-center">
                           <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
                                   className="mr-2 w-6 h-6 rounded-full"
-                                  src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                                  src=""
                                   alt="Helene Engels"/>Helene Engels</p>
                           <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-06-23"
                                   title="June 23rd, 2022">Jun. 23, 2022</time></p>
@@ -285,7 +285,7 @@ if(!post){
       <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <article className="max-w-xs">
               <a href="#">
-                  <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png" className="mb-5 rounded-lg" alt="Image 1"/>
+                  <img src="" className="mb-5 rounded-lg" alt="Image 1"/>
               </a>
               <h2 className="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
                   <a href="#">Our first office</a>
@@ -297,7 +297,7 @@ if(!post){
           </article>
           <article className="max-w-xs">
               <a href="#">
-                  <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-2.png" className="mb-5 rounded-lg" alt="Image 2"/>
+                  <img src="" className="mb-5 rounded-lg" alt="Image 2"/>
               </a>
               <h2 className="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
                   <a href="#">Enterprise design tips</a>
@@ -309,7 +309,7 @@ if(!post){
           </article>
           <article className="max-w-xs">
               <a href="#">
-                  <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-3.png" className="mb-5 rounded-lg" alt="Image 3"/>
+                  <img src="" className="mb-5 rounded-lg" alt="Image 3"/>
               </a>
               <h2 className="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
                   <a href="#">We partnered with Google</a>
@@ -321,7 +321,7 @@ if(!post){
           </article>
           <article className="max-w-xs">
               <a href="#">
-                  <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-4.png" className="mb-5 rounded-lg" alt="Image 4"/>
+                  <img src="" className="mb-5 rounded-lg" alt="Image 4"/>
               </a>
               <h2 className="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
                   <a href="#">Our first project with React</a>

@@ -9,7 +9,7 @@ const LeftSidebar = () => {
                     </div>
                     <div className="mt-5 px-8">
                         <h1 className=" text-xl font-bold text-gray-400 hover:text-gray-100">Pıkırler</h1>
-                        <categories></categories>
+                        
                     </div>
                     <div className="mt-5 px-8">
                         <h1 className=" text-xl font-bold text-gray-400 hover:text-gray-100">Jarnama</h1>

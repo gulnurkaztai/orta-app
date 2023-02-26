@@ -6,7 +6,8 @@ import BackButton from '../components/backbutton/BackButton'
 import PostItem from '../components/layout/PostItem'
 import { Link } from 'react-router-dom'
 import Tabs from '../components/layout/Tabs'
-import Pagination from "../components/layout/Pagination"
+
+
 
 const Posts = () => {
    const {posts} = useSelector((state)=>state.posts)
@@ -35,7 +36,7 @@ const Posts = () => {
           </div>
         </div>
         <div className="mx-auto my-auto">
-                    
+
         </div>
     </div>
   )

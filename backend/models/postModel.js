@@ -20,10 +20,10 @@ const postSchema = mongoose.Schema({
     selectedFile: {
         type: String
       },
-    comments: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
-      }],
+    comments: {
+        type: Array,
+
+      },
       likeCount: {
         type: Number,
         default: 0

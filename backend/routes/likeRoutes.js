@@ -1,7 +1,7 @@
 const express = require('express')
-const router = express.Router({mergeParams:true})
+const router = express.Router()
 const {likePost} = require('../controllers/likeController')
 
-router.route('/').patch(likePost)
+router.put('/:id',likePost)
 
 module.exports = router

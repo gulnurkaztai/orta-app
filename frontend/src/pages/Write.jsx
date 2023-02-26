@@ -1,12 +1,12 @@
 import { useState} from "react"
-import {  useDispatch } from "react-redux"
+import {  useDispatch, useSelector } from "react-redux"
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {createPost} from '../features/posts/postSlice'
 
 
 const Write = () => {
-
+    const {post} = useSelector((state)=>state.posts)
     const [article, setArticle] = useState({
         title: '',
         text: ''
@@ -30,7 +30,7 @@ const {title, text} = article;
         .unwrap()
         .then(() => {
           toast.success('New post created!')
-          navigate(`/posts/${userPost._id}`)
+          navigate(`/posts/${post._id}`)
         })
         .catch(toast.error)
         
