@@ -24,12 +24,12 @@ const RightSidebar = () => {
 
                     </div>
                     <div className="mt-5 px-8">
-                        <h1 className=" text-xl font-bold text-gray-700">Pıkırler</h1>
+                        <h1 className=" text-xl font-bold text-gray-700">Taqyryptar</h1>
                         
                     </div>
                     <div className="mt-5 px-8">
                         <h1 className=" text-xl font-bold text-gray-700">Jarnama</h1>
-                        <recent-post></recent-post>
+                        
                     </div>
                 </div>
     </>
