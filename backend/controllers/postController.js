@@ -42,8 +42,8 @@ const createPost = asyncHandler(async (req,res)=>{
         comments: [],
         tags: []
     })
+    await Post.find().updateOne({_id:req.params.postId},{$push: {posts: { $each: post, $position: 0}} })
 
-    await Post.updateOne({_id:req.params.postId},{$push: { posts: post, $sort: {createdAt: 1}} })
 
         res.status(201).json(post)
 

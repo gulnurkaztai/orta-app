@@ -30,7 +30,7 @@ const {title, text} = article;
         .unwrap()
         .then(() => {
           toast.success('New post created!')
-          navigate(`/posts/`)
+          navigate(`/`)
         })
         .catch(toast.error)
         
@@ -58,6 +58,7 @@ const {title, text} = article;
                         <div className='font-display mb-8'>
                             <label className="text-l text-gray-100">Mätın<span className="text-red-500">*</span></label>
                                 <textarea
+                                contentEditable="true"
                                     rows="18"
                                     type="text"
                                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
