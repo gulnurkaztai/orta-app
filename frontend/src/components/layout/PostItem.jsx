@@ -21,7 +21,8 @@ const PostItem = ({post}) => {
                     </div>
 
                     <div className='prose max-w-none text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'>
-                      {post.text.substring(0,250)}...
+                     {/* Since the error happens just before the API call is made, use optional chaining (?.) to check whether the string to be truncated is available yet */}
+                     {post.text?.substring(0,100)}...
                     </div>
                   </div>
                   <div className='text-base font-medium leading-6'>
