@@ -16,9 +16,9 @@ const RightSidebar = () => {
                     <div className="mt-10 px-8">
                         <h1 className=" text-xl font-bold text-gray-700">Avtorlar</h1>
                         <ul>
-                          {/* <ul>{users.map((user)=>(
+                          <ul>{users.map((user)=>(
                           <UserItem key={user._id} user={user}/>
-                        ))}</ul> */}
+                        ))}</ul>
 
                         </ul>
 
