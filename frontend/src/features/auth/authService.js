@@ -20,6 +20,15 @@ const login = async (userData) => {
     return response.data
 }
 
+const updateProfile = async (userData) => {
+  const response = await axios.put(API_URL + "me/update", userData)
+
+  // if (response.data) {
+  //   localStorage.setItem('user', JSON.stringify(response.data))
+  // }
+  return response.data
+}
+
 // Get all users
 const getUsers = async () =>{
   const response = await axios.get(API_URL)
@@ -31,7 +40,8 @@ const authService={
     register,
     logout,
     login,
-    getUsers
+    getUsers,
+    updateProfile
 }
 
 export default authService

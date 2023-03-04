@@ -15,9 +15,11 @@ const registerUser = asyncHandler(async (req,res)=>{
         res.status(400)
         throw new Error("Please include all fields")
     }
+    const emailLowerCase = email.toLowerCase();
 
     // Find if user already exists
-    const userExists = await User.findOne({email})
+
+    const userExists = await User.findOne({email: emailLowerCase})
 
     if(userExists){
         res.status(400)
@@ -31,7 +33,7 @@ const registerUser = asyncHandler(async (req,res)=>{
     // Creaete User
     const user = await User.create({
         name,
-        email,
+        email: emailLowerCase,
         password: hashedPassword
     })
 
@@ -40,6 +42,7 @@ const registerUser = asyncHandler(async (req,res)=>{
             _id: user._id,
             name: user.name,
             email:user.email,
+            avatarPic,
             token: generateToken(user._id)
         })
     } else {
@@ -84,7 +87,8 @@ const getMe = asyncHandler(async (req,res)=>{
     const user = {
         id: req.user._id,
         email: req.user.email,
-        name: req.user.name
+        name: req.user.name,
+        avatarPic: req.user.avatarPic
     }
     res.status(200).json(user)
 })
@@ -96,11 +100,16 @@ const getUsers = asyncHandler(async (req, res)=>{
     res.status(200).json(users)
 })
 
-
+const updateProfile = asyncHandler(async (req, res)=>{
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body);
+    const { _id: id, name, bio, avatarPic } = updatedUser;
+    res.status(200).json({ success: true, result: { name, avatarPic, bio} })
+})
 
 module.exports = {
     registerUser,
     loginUser,
     getMe,
-    getUsers
+    getUsers,
+    updateProfile
 }

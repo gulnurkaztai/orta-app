@@ -40,6 +40,13 @@ export const getUsers = createAsyncThunk('/users/getAll', async(_, thunkAPI) =>{
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }
 })
+export const updateProfile = createAsyncThunk('/users/update', async(_, thunkAPI) =>{
+    try {
+        return await authService.updateProfile()
+    } catch (error) {
+        return thunkAPI.rejectWithValue(extractErrorMessage(error))
+    }
+})
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -75,6 +82,10 @@ export const authSlice = createSlice({
         })
         .addCase(getUsers.fulfilled, (state, action) =>{
             state.users = action.payload
+        })
+        .addCase(updateProfile.fulfilled, (state, action)=>{
+            state.user = action.payload
+            state.isLoading=false
         })
     }
 })
