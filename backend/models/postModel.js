@@ -34,12 +34,7 @@ const postSchema = mongoose.Schema({
       //   default: 0
       // },
     tags: [String],
-    createdAt: {
-        type: Date,
-        default: new Date()
-    }
-},{
-    
-})
+
+},{timestamps: true})
 
 module.exports = mongoose.model('Post', postSchema)

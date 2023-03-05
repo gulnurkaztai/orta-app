@@ -4,11 +4,12 @@ const Post = require('../models/postModel')
 // Get user posts
 // GET /api/posts
 const getPosts = asyncHandler(async (req,res)=>{
-
-    const posts = await Post.find();
-
-    res.status(200).json(posts)
-
+    const posts = await Post.find()
+    .slice()
+    .sort({createdAt:-1})
+    .exec((err, posts)=>{
+        res.status(200).json(posts)
+    })
 })
 
 // Get user post
@@ -42,10 +43,8 @@ const createPost = asyncHandler(async (req,res)=>{
         comments: [],
         tags: []
     })
-    await Post.find().updateOne({_id:req.params.postId},{$push: {posts: { $each: post, $position: 0}} })
 
-
-        res.status(201).json(post)
+    res.status(201).json(post)
 
 })
 
