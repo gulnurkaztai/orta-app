@@ -1,27 +1,22 @@
-import {Link, useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Logo from './Logo'
-import { useSelector, useDispatch } from 'react-redux'
-import {logout, reset} from '../../features/auth/authSlice'
+import { useSelector} from 'react-redux'
 import {FiMenu} from 'react-icons/fi'
 import {useState} from 'react'
 import {BsToggleOn} from 'react-icons/bs'
+import UserIcon from './UserIcon'
 
 const Navbar = () => {
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
   const {user} = useSelector((state) => state.users)
   const [open, setOpen] = useState(false)
 
-  const onLogout = ()=>{
-    dispatch (logout())
-    navigate('/')
-  }
+
   return (
     <>
 
 <nav className=" bg-gray-900  text-gray-200" >
-  <div className="flex items-center justify-between xl:max-w-7xl xl:mx-auto mx-w-full px-[5%] flex-wrap w-full">
+  <div className="flex items-center justify-between xl:max-w-9xl xl:mx-auto mx-w-full px-[5%] flex-wrap w-full">
 
 
       <div className='flex'>
@@ -40,11 +35,8 @@ const Navbar = () => {
           <div className='text-base flex justify-between items-center'>
                   <Link to='/create' className="md:py-5 px-3 block font-display hover:text-white">JANA JAZBA</Link>
           </div>
-            <div className=''>
-              <button className=' font-display' onClick={onLogout}>
-                LOGOUT
-              </button>
-            </div>
+          <UserIcon/>
+
          </>) : (
             <>
               <FiMenu className='md:hidden block h-6 w-6 cursor-pointer' onClick={()=>setOpen(!open)}/>
