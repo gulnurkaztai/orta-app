@@ -18,11 +18,10 @@ const Navbar = () => {
 <nav className=" bg-gray-900  text-gray-200" >
   <div className="flex items-center justify-between xl:max-w-9xl xl:mx-auto mx-w-full px-[5%] flex-wrap w-full">
 
-
       <div className='flex'>
         <Link to="/" className="flex items-center space-x-4 py-5">
           <div>
-            <Logo className=""/>
+            <Logo />
           </div>
             <div className='hidden md:flex flex-col hover:text-white'>
               <span className="py-1 font-display">ORTA</span>
@@ -32,11 +31,12 @@ const Navbar = () => {
       </div>
       {user ? (
         <>
-          <div className='text-base flex justify-between items-center'>
-                  <Link to='/create' className="md:py-5 px-3 block font-display hover:text-white">JANA JAZBA</Link>
-          </div>
+        <div className='flex'>
+          <Link to='/create' >
+             <button className="px-3 py-2 font-display text-gray-900 bg-green-200 shadow-lg shadow-green-200/50 hover:bg-green-300 hover:text-black rounded-xl transition duration-300 " >JANA JAZBA</button>
+          </Link>
           <UserIcon/>
-
+          </div>
          </>) : (
             <>
               <FiMenu className='md:hidden block h-6 w-6 cursor-pointer' onClick={()=>setOpen(!open)}/>
