@@ -5,7 +5,7 @@ import {extractErrorMessage} from '../../utils'
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
-    users: null,
+    users: [],
     user: user? user:null,
     isLoading: false,
 }

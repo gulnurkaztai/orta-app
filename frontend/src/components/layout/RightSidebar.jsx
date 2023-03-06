@@ -16,15 +16,14 @@ const RightSidebar = () => {
                     <div className="mt-10 px-8">
                         <h1 className=" text-xl font-bold text-gray-700">Avtorlar</h1>
                         <ul>
-                          <ul>{users.map((user)=>(
+                            {users.map((user)=>(
                           <UserItem key={user._id} user={user}/>
-                        ))}</ul>
-
+                        ))}
                         </ul>
 
                     </div>
                     <div className="mt-5 px-8">
-                        <h1 className=" text-xl font-bold text-gray-700">Taqyryptar</h1>
+                        <h1 className=" text-xl font-bold text-gray-700"></h1>
                         
                     </div>
                     <div className="mt-5 px-8">
