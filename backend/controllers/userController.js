@@ -11,7 +11,7 @@ const registerUser = asyncHandler(async (req,res)=>{
     const {name, email, password} = req.body
 
     // Validation
-    if(!name || !email || !password){
+    if(!name || !email ){
         res.status(400)
         throw new Error("Please include all fields")
     }

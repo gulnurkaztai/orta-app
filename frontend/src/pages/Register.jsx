@@ -7,6 +7,7 @@ import Spinner from '../components/spinner/Spinner';
 import { Link } from 'react-router-dom'
 import {FaGithub, FaFacebook, FaGoogle, FaRegEnvelope, FaRegUserCircle} from 'react-icons/fa'
 import {BiLock} from 'react-icons/bi'
+import GoogleLogin from '../components/user/GoogleLogin';
  
 function Register() {
   const [formData, setFormData] = useState({
@@ -145,10 +146,10 @@ function Register() {
           <div className='border-2 w-60 mb-2 inline-block my-4'></div>
       <p className='mb-2 font-display text-gray-400'>NEMESE </p>
         <p className='font-display text-gray-400 mb-5'>äleumettık jelıñızben kırıñız</p>
-        <div className='flex justify-center my-2'>
-          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaFacebook/></Link>
-          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaGithub/></Link>
-          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaGoogle/></Link>
+        <div className='flex justify-center '>
+           <GoogleLogin className='border-2 border-gray-200 rounded-full p-3 mx-1'/>
+          <FaGithub className='border-2 border-gray-200 rounded-full p-3 mx-1'/>
+          <FaFacebook className='border-2 border-gray-200 rounded-full p-3 mx-1'/>
         </div>
     </div>
     </div>
