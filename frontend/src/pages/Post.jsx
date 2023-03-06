@@ -13,7 +13,8 @@ import {FaRegHeart} from 'react-icons/fa'
 const Post = () => {
 const [commentText, setCommentText] = useState('')
 const {post} = useSelector((state)=>state.posts)
-const {likeCount} = useSelector((state)=>state.likes)
+const {user} = useSelector((state)=>state.users)
+const {likes} = useSelector((state)=>state.likes)
 
 const dispatch = useDispatch()
 const {postId} = useParams()
@@ -55,7 +56,7 @@ if(!post){
               <h1 className="text-center mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{post.title}</h1>
           </header>
 <p classNameName='px-10 py-5'>{post.text}</p>
-<button onClick={()=>dispatch(likePost(postId))}><FaRegHeart/>{post.likeCount}</button>
+<button onClick={()=>dispatch(likePost({user, postId}))}><FaRegHeart/>{likes.length}</button>
           <section className="not-format">
               <div className="flex justify-between items-center mb-6">
                   <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>

@@ -19,11 +19,11 @@ const createComment = asyncHandler(async (req,res)=>{
 
     const comment = await Comment.create({
         text: req.body.text,
-        post_id: req.params.postId,
+        post_id: req.params.id,
         user_id: req.user.id,
     })
 
-    await Post.updateOne({_id:req.params.postId},{$push: { comments: comment} })
+    await Post.updateOne({_id:req.params.id},{$push: { comments: comment} })
 
 
     res.status(201).json(comment)

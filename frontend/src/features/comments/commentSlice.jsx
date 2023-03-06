@@ -1,17 +1,20 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
-import commentService from '../posts/postService'
+import commentService from '../comments/commentService'
 import { extractErrorMessage } from '../../utils'
 
 const initialState = {
-    comments: null,
+    comments: [],
     comment: null
 }
 
 // Create new comment
-export const createComment = createAsyncThunk('comments/new', async({commentText, postId}, thunkAPI)=>{
+export const createComment = createAsyncThunk('comments', async({commentText, postId}, thunkAPI)=>{
     try{
         const token = thunkAPI.getState().users.user.token
-        return await commentService.createComment(commentText, postId, token)
+        console.log(commentText)
+        console.log(postId)
+        return await commentService.createComment(commentText,postId, token)
+
     } catch(error){
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }
@@ -22,7 +25,7 @@ export const createComment = createAsyncThunk('comments/new', async({commentText
 
 
 export const commentSlice = createSlice({
-    name: 'comment',
+    name: 'comments',
     initialState,
     extraReducers: (builder) =>{
         builder
