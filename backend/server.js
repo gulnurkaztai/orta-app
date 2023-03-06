@@ -35,9 +35,6 @@ app.use(express.urlencoded({extended: false}))
 
 
 
-app.use('/', (req,res)=>{
-    res.status(200).json({message: "Welcome"})
-})
 
 // Routes
 app.use('/api/users', require('./routes/userRoutes'))
