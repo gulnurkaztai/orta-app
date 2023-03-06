@@ -5,7 +5,7 @@ const User = require('../models/userModel')
 const likePost = asyncHandler(async (req,res)=>{
 
     const likeAuthor = await User.findById(req.user._id)
-    await Post.updateOne({_id:req.params.id},{$push: {likes: likeAuthor.name} })
+    await Post.updateOne({_id:req.params.id},{$push: {likes: likeAuthor.name}})
     res.status(200).send()
 })
 

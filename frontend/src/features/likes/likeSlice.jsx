@@ -3,14 +3,18 @@ import likeService from '../likes/likeService'
 import { extractErrorMessage } from '../../utils'
 
 const initialState = {
-    likeCount: 0
+    likes: [],
+    like: null
 }
 
-export const likePost = createAsyncThunk('/posts/get/likes', async(postId, thunkAPI) =>{
+export const likePost = createAsyncThunk('likes', async({user, postId}, thunkAPI) =>{
     try{
+        const token = thunkAPI.getState().users.user.token
         console.log("thunk")
         console.log(postId)
-        return await likeService.likePost(postId)
+
+        return await likeService.likePost(user, postId, token)
+
     } catch (error){
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }
@@ -18,11 +22,11 @@ export const likePost = createAsyncThunk('/posts/get/likes', async(postId, thunk
 
 
 export const likeSlice = createSlice({
-    name: 'like',
+    name: 'likes',
     initialState,
     extraReducers: (builder) =>{
-        builder.addCase(likePost.fulfilled, (state)=>{
-            state.likeCount ++;
+        builder.addCase(likePost.fulfilled, (state, action)=>{
+            state.likes.push(action.payload);
         })
         .addCase(likePost.rejected, (state)=>{
             console.log(state)
