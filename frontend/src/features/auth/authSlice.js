@@ -40,6 +40,17 @@ export const getUsers = createAsyncThunk('/users/getAll', async(_, thunkAPI) =>{
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }
 })
+
+export const getMe = createAsyncThunk('/users/get', async(id, thunkAPI) =>{
+    try {
+        return await authService.getMe(id)
+
+    } catch (error) {
+        return thunkAPI.rejectWithValue(extractErrorMessage(error))
+    }
+})
+
+
 export const updateProfile = createAsyncThunk('/users/update', async(_, thunkAPI) =>{
     try {
         return await authService.updateProfile()
@@ -82,6 +93,12 @@ export const authSlice = createSlice({
         })
         .addCase(getUsers.fulfilled, (state, action) =>{
             state.users = action.payload
+        })
+        .addCase(getMe.fulfilled, (state, action) =>{
+            state.user = action.payload
+        })
+        .addCase(getMe.rejected, (state, action)=>{
+            console.log(state.user)
         })
         .addCase(updateProfile.fulfilled, (state, action)=>{
             state.user = action.payload

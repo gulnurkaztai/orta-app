@@ -5,12 +5,14 @@ import {toast} from 'react-toastify'
 import {createPost} from '../features/posts/postSlice'
 
 
+
 const Write = () => {
     const {post} = useSelector((state)=>state.posts)
     const [article, setArticle] = useState({
         title: '',
         text: ''
     })
+    const [file, setFile] = useState(null);
 
 const {title, text} = article;
     const dispatch = useDispatch()
@@ -23,7 +25,7 @@ const {title, text} = article;
         }));
       };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
         const userPost = {title, text}
         dispatch(createPost(userPost))
@@ -42,6 +44,14 @@ const {title, text} = article;
             <div className=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div className="p-6  border-gray-200">
                 <form onSubmit={onSubmit}>
+                    <div>
+                    <input
+                        type="file"
+                        id="fileInput"
+                        style={{ display: "none" }}
+                        onChange={(e) => setFile(e.target.files[0])}
+                    />
+                    </div>
                         <div className='font-display mb-4'>
                             <label className="block mb-2 text-sm font-medium text-gray-100 dark:text-white">Taqyryp <span className="text-red-500">*</span></label>
                             <input
@@ -58,7 +68,6 @@ const {title, text} = article;
                         <div className='font-display mb-8'>
                             <label className="text-l text-gray-100">Mätın<span className="text-red-500">*</span></label>
                                 <textarea
-                                contentEditable="true"
                                     rows="18"
                                     type="text"
                                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "

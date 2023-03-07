@@ -2,8 +2,9 @@ import {FiMail} from 'react-icons/fi'
 import {MdOutlineNotificationsNone} from 'react-icons/md'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import {logout, reset} from '../../features/auth/authSlice'
+import Profile from '../../pages/Profile'
 
 
 const UserIcon = () => {
@@ -33,12 +34,9 @@ const UserIcon = () => {
 
 
     <div id="dropdown" className={`${userMenu? "block" : "hidden"} absolute right-0 top-10 bg-white  rounded-lg shadow w-32 dark:bg-gray-700`} >
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 font-display">
+        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 font-display">
         <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Account</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+            <Link to={user._id} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</Link>
           </li>
           <li>
               <button className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white font-display' onClick={onLogout}>

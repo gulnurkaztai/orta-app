@@ -35,12 +35,18 @@ const getUsers = async () =>{
   return response.data
 }
 
+const getMe = async (id) =>{
+  const response = await axios.get(API_URL+id)
+  return response.data
+}
+
 const logout = () => localStorage.removeItem('user')
 const authService={
     register,
     logout,
     login,
     getUsers,
+    getMe,
     updateProfile
 }
 

@@ -10,6 +10,7 @@ import Write from './pages/Write'
 import PrivateRoute from './components/privateRoute/PrivateRoute';
 import Posts from './pages/Posts';
 import Post from './pages/Post';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
+          <Route path='/:id' element={<Profile/>}/>
           <Route path='/create' element={<PrivateRoute><Write/></PrivateRoute>}/>
           <Route path='/posts' element={<Posts/>}/>
           <Route path='/posts/:postId' element={<Post/>}/>

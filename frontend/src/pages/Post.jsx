@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import {toast} from 'react-toastify'
 import {FaRegHeart} from 'react-icons/fa'
+import {AiOutlineMessage} from 'react-icons/ai'
+import {BsBookmark} from 'react-icons/bs'
 
 const Post = () => {
 const [commentText, setCommentText] = useState('')
@@ -41,7 +43,7 @@ if(!post){
 
 <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
   <div className="flex justify-between px-4 mx-auto max-w-screen-xl ">
-      <article className="mx-auto w-full max-w-3xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert bg-gray-800 rounded-3xl">
+      <article className="mx-auto w-full max-w-3xl border format format-sm sm:format-base lg:format-lg format-blue dark:format-invert bg-gray-800 rounded-3xl p-10">
           <header className="mb-4 lg:mb-6 not-format px-10 py-5">
               <address className="flex items-center mb-6 not-italic">
                   <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
@@ -53,13 +55,19 @@ if(!post){
                       </div>
                   </div>
               </address>
-              <h1 className="text-center mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{post.title}</h1>
+              <h2 className="text-center mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{post.title}</h2>
           </header>
-<p classNameName='px-10 py-5'>{post.text}</p>
-<button onClick={()=>dispatch(likePost({user, postId}))}><FaRegHeart/>{likes.length}</button>
+            <p classNameName='px-10 py-5 '>{post.text}</p>
+            <div className='w-full mt-5 mb-5 flex flex-row-reverse gap-x-3.5 '>
+                <button onClick={()=>dispatch(likePost({user, postId}))} className='mt-0.5 flex'><BsBookmark className='w-6 h-6 top-0'/></button>
+                <button onClick={()=>dispatch(likePost({user, postId}))} className=''><AiOutlineMessage className='w-6 h-6'/><div>{post.comments.length}</div></button> 
+                <button onClick={()=>dispatch(likePost({user, postId}))} className=''><FaRegHeart className='w-6 h-6'/><div>{post.likes.length}</div></button>
+
+                
+            </div>
+
           <section className="not-format">
-              <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
+              <div className="flex justify-between items-center mb-6 ">
               </div>
               <form className="mb-6" onSubmit={onCommentSubmit}>
                   <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">

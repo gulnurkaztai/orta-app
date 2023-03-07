@@ -1,6 +1,6 @@
 const UserItem = ({user}) => {
   return (
-   <div className="flow-root">
+   <div className="flow-root overscroll-y-auto">
         <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
             <li className="py-3 sm:py-4">
                 <div className="flex items-center space-x-4">
