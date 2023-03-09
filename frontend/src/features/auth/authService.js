@@ -20,14 +20,14 @@ const login = async (userData) => {
     return response.data
 }
 
-const updateProfile = async ({id, updatedUser}, token) => {
+const updateProfile = async ({id, ...updatedUser}, token) => {
   const config={
     headers: {
         Authorization: `Bearer ${token}`
     }
 }
 
-  const response = await axios.patch(API_URL + "update/"+id, updatedUser, config)
+  const response = await axios.patch(API_URL + `update/${id}`, updatedUser, config)
   console.log("service")
   console.log(id)
   console.log(updatedUser)
