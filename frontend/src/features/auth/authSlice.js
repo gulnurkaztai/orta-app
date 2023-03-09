@@ -51,7 +51,7 @@ export const getMe = createAsyncThunk('me', async(id, thunkAPI) =>{
 })
 
 
-export const updateProfile = createAsyncThunk('update', async(updatedUser, thunkAPI) =>{
+export const updateProfile = createAsyncThunk('/update', async(updatedUser, thunkAPI) =>{
     try {
         console.log("slice")
     console.log(updatedUser)
@@ -100,11 +100,7 @@ export const authSlice = createSlice({
             state.user = action.payload
         })
         .addCase(updateProfile.fulfilled, (state, action)=>{
-            state.users.map(user =>{
-                if(user._id === action.payload.id){
-                    return Object.assign(action.payload)
-                }
-            })
+            state.users.findIndex(user=> user._id === action.payload.id)
         })
     }
 })
