@@ -42,6 +42,8 @@ const registerUser = asyncHandler(async (req,res)=>{
             _id: user._id,
             name: user.name,
             email:user.email,
+            avatarPic: '',
+            bio:'',
             token: generateToken(user._id)
         })
     } else {
@@ -71,6 +73,8 @@ const loginUser = asyncHandler(async(req,res)=>{
             _id: user._id,
             name: user.name,
             email:user.email,
+            avatarPic: '',
+            bio:'',
             token: generateToken(user._id)
         })
     } else {
@@ -95,9 +99,15 @@ const getUsers = asyncHandler(async (req, res)=>{
 })
 
 const updateProfile = asyncHandler(async (req, res)=>{
-    const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {new: true});
+    try {
+        const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body);
   
-    res.status(200).json(updatedUser)
+        res.status(200).json(updatedUser)
+
+    } catch (error) {
+        console.log(error)
+    }
+
 })
 
 module.exports = {
