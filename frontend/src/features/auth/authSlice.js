@@ -100,7 +100,10 @@ export const authSlice = createSlice({
             state.user = action.payload
         })
         .addCase(updateProfile.fulfilled, (state, action)=>{
-            state.users.findIndex(user=> user._id === action.payload.id)
+            const updUser = state.users.findIndex(user=> user._id === action.payload.id)
+            if(updUser){
+                state.updUser.update(action.payload)
+            }
         })
     }
 })
