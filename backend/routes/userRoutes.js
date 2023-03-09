@@ -7,6 +7,6 @@ router.post('/', registerUser)
 router.post('/login', loginUser)
 router.get('/me', protect, getMe)
 router.get('/', getUsers)
-router.put('/update/:id', protect, updateProfile)
+router.patch('/update/:id', protect, updateProfile)
 
 module.exports = router

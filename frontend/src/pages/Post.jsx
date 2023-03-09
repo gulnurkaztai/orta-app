@@ -42,22 +42,28 @@ if(!post){
     <>
 
 <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
-  <div className="flex justify-between px-4 mx-auto max-w-screen-xl ">
+  <div className="flex justify-between px-4 mx-auto max-w-screen-xl font font-display">
       <article className="mx-auto w-full max-w-3xl border format format-sm sm:format-base lg:format-lg format-blue dark:format-invert bg-gray-800 rounded-3xl p-10">
           <header className="mb-4 lg:mb-6 not-format px-10 py-5">
-              <address className="flex items-center mb-6 not-italic">
+              <div className="flex  -ml-10 mb-8 not-italic">
                   <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
-                      <img className="mr-4 w-16 h-16 rounded-full" src="" alt="avatar photo"/>
+                      <img className="mr-4 w-16 h-16 rounded-full" src='https://www.looper.com/img/gallery/professor-xs-entire-backstory-explained/intro-1587748942.jpg' alt="avatar photo"/>
                       <div className=''>
                           <a href="#" rel="author" className="text-xl font-bold text-gray-900 dark:text-white">{post.user_name}</a>
                           <p className="text-base font-light text-gray-500 dark:text-gray-400">Avtordin BIO</p>
                           <p className="text-base font-light text-gray-500 dark:text-gray-400"><time>{new Date(post.createdAt).toDateString()}</time></p>
                       </div>
                   </div>
-              </address>
-              <h2 className="text-center mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{post.title}</h2>
+              </div>
+              <div className=' mb-4 mt-5'>
+                    <h2 className="text-center text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl md:text-2xl dark:text-white">{post.title}</h2>
+              </div>
+              
           </header>
-            <p classNameName='px-10 py-5 '>{post.text}</p>
+          <div className='prose max-w-none text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'>
+                    <p classNameName='px-10 py-5 '>{post.text}</p>
+          </div>
+
             <div className='w-full mt-5 mb-5 flex flex-row-reverse gap-x-3.5 '>
                 <button onClick={()=>dispatch(likePost({user, postId}))} className='mt-0.5 flex'><BsBookmark className='w-6 h-6 top-0'/></button>
                 <button onClick={()=>dispatch(likePost({user, postId}))} className=''><AiOutlineMessage className='w-6 h-6'/><div>{post.comments.length}</div></button> 

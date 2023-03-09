@@ -99,14 +99,12 @@ const getUsers = asyncHandler(async (req, res)=>{
 })
 
 const updateProfile = asyncHandler(async (req, res)=>{
-    try {
+
         const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body);
-  
+        console.log(req.user.id)
+        console.log(req.body)
         res.status(200).json(updatedUser)
 
-    } catch (error) {
-        console.log(error)
-    }
 
 })
 
