@@ -53,9 +53,10 @@ export const getMe = createAsyncThunk('me', async(id, thunkAPI) =>{
 
 export const updateProfile = createAsyncThunk('/update', async(updatedUser, thunkAPI) =>{
     try {
+        const token = thunkAPI.getState().users.user.token
         console.log("slice")
     console.log(updatedUser)
-        return await authService.updateProfile(updatedUser)
+        return await authService.updateProfile(updatedUser, token)
     } catch (error) {
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }
@@ -100,10 +101,14 @@ export const authSlice = createSlice({
             state.user = action.payload
         })
         .addCase(updateProfile.fulfilled, (state, action)=>{
-            const updUser = state.users.findIndex(user=> user._id === action.payload.id)
-            if(updUser){
-                state.updUser.update(action.payload)
-            }
+            const updatedUser = action.payload;
+            state = {
+              ...state,
+              posts: state.users.map((user) => {
+                console.log(user._id);
+                return user._id === updatedUser._id ? { ...user, ...updatedUser } : user;
+              }),
+            };
         })
     }
 })
