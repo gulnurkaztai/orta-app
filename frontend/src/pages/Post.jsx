@@ -44,7 +44,7 @@ const onCommentSubmit = (e) =>{
   .catch(toast.error)
 }
 
-console.log(post)
+
 if(!post){
   return <Spinner/>
 }
@@ -56,7 +56,7 @@ if(!post){
   <div className="flex justify-between px-4 mx-auto max-w-screen-xl font font-display">
       <article className="mx-auto w-full max-w-3xl border format format-sm sm:format-base lg:format-lg format-blue dark:format-invert bg-gray-800 rounded-3xl p-10">
           <header className="mb-4 lg:mb-6 not-format px-10 py-5">
-              <div className="flex  -ml-10 mb-8 not-italic">
+              <div className="flex  -ml-1 mb-8 not-italic">
                   <Link to='#' className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
                       <img className="mr-4 w-16 h-16 rounded-full" src={post.user_photo || defaultAvatar} alt="avatar photo"/>
                       <div className=''>
@@ -66,7 +66,7 @@ if(!post){
                   </Link>
               </div>
               <div className=' mb-4 mt-5'>
-                    <h2 className="text-center text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl md:text-2xl dark:text-white">{post.title}</h2>
+                    <h2 className="text-center text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl sm:text-xs md:text-2xl dark:text-white">{post.title}</h2>
               </div>
               
           </header>
@@ -87,9 +87,9 @@ if(!post){
               </div>
               <form className="mb-6" onSubmit={onCommentSubmit}>
                   <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                      <label for="comment" className="sr-only">Your comment</label>
+                      <label htmlFor="comment" className="sr-only">Your comment</label>
                       <textarea id="comment" rows="6" value={commentText}
-        onChange={(e)=>setCommentText(e.target.value)}
+                          onChange={(e)=>setCommentText(e.target.value)}
                           className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                           placeholder="Write a comment..." required></textarea>
                   </div>

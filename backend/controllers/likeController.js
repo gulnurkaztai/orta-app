@@ -9,6 +9,13 @@ const likePost = asyncHandler(async (req,res)=>{
     res.status(200).send()
 })
 
+const getLikes = asyncHandler(async (req,res)=>{
+
+    const likedPost = await Post.findById(req.params.id)
+    
+    res.status(200).json(likedPost.likes.length)
+})
 
 
-module.exports = {likePost}
+
+module.exports = {likePost, getLikes}
