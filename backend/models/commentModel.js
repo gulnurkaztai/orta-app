@@ -12,6 +12,9 @@ const commentSchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
+    user_photo: {
+        type: String
+    },
     post_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'

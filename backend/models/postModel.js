@@ -9,6 +9,9 @@ const postSchema = mongoose.Schema({
     user_name: {
       type: String,
     },
+    user_photo: {
+      type: String,
+    },
     title: {
         type: String,
         trim: true,

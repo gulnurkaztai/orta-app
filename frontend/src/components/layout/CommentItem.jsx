@@ -1,5 +1,8 @@
 import moment from 'moment'
-const CommentItem = ({comment}) => {
+import defaultAvatar from '../assets/defaultAvatar.png'
+
+
+const CommentItem = ({comment, authorPic}) => {
   return (
     <>
       <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
@@ -8,7 +11,7 @@ const CommentItem = ({comment}) => {
                           <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                             <img
                                   className="mr-2 w-6 h-6 rounded-full"
-                                  src=""
+                                  src={authorPic || defaultAvatar}
                                   alt=""/></p>
                           <p className="text-sm text-gray-600 dark:text-gray-400">
                             <time title="">{moment(comment.createdAt).fromNow()}</time></p>

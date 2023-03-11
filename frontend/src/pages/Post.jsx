@@ -1,16 +1,16 @@
 import {useSelector, useDispatch} from 'react-redux'
 import {getPost} from '../features/posts/postSlice'
 import {likePost} from '../features/likes/likeSlice'
-import BackButton from '../components/backbutton/BackButton'
 import {createComment, getComments} from '../features/comments/commentSlice'
 import CommentItem from '../components/layout/CommentItem'
 import Spinner from '../components/spinner/Spinner'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import {toast} from 'react-toastify'
 import {FaRegHeart} from 'react-icons/fa'
 import {AiOutlineMessage} from 'react-icons/ai'
 import {BsBookmark} from 'react-icons/bs'
+import defaultAvatar from '../components/assets/defaultAvatar.png'
 
 const Post = () => {
 const [commentText, setCommentText] = useState('')
@@ -18,11 +18,21 @@ const {post} = useSelector((state)=>state.posts)
 const {user} = useSelector((state)=>state.users)
 const {likes} = useSelector((state)=>state.likes)
 
+
 const dispatch = useDispatch()
 const {postId} = useParams()
 useEffect(()=>{
     dispatch(getPost(postId)).unwrap().catch(toast.error)
 },[postId,dispatch])
+
+// useEffect(()=>{
+//   dispatch(getLikes()).unwrap().catch(toast.error)
+// },[dispatch])
+
+// useEffect(()=>{
+//   dispatch(getComments()).unwrap().catch(toast.error)
+// },[dispatch])
+
 
 const onCommentSubmit = (e) =>{
   e.preventDefault()
@@ -34,6 +44,7 @@ const onCommentSubmit = (e) =>{
   .catch(toast.error)
 }
 
+console.log(post)
 if(!post){
   return <Spinner/>
 }
@@ -46,14 +57,13 @@ if(!post){
       <article className="mx-auto w-full max-w-3xl border format format-sm sm:format-base lg:format-lg format-blue dark:format-invert bg-gray-800 rounded-3xl p-10">
           <header className="mb-4 lg:mb-6 not-format px-10 py-5">
               <div className="flex  -ml-10 mb-8 not-italic">
-                  <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
-                      <img className="mr-4 w-16 h-16 rounded-full" src='https://www.looper.com/img/gallery/professor-xs-entire-backstory-explained/intro-1587748942.jpg' alt="avatar photo"/>
+                  <Link to='#' className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
+                      <img className="mr-4 w-16 h-16 rounded-full" src={post.user_photo || defaultAvatar} alt="avatar photo"/>
                       <div className=''>
-                          <a href="#" rel="author" className="text-xl font-bold text-gray-900 dark:text-white">{post.user_name}</a>
-                          <p className="text-base font-light text-gray-500 dark:text-gray-400">Avtordin BIO</p>
+                          <p className="text-xl font-bold text-gray-900 dark:text-white">{post.user_name}</p>
                           <p className="text-base font-light text-gray-500 dark:text-gray-400"><time>{new Date(post.createdAt).toDateString()}</time></p>
                       </div>
-                  </div>
+                  </Link>
               </div>
               <div className=' mb-4 mt-5'>
                     <h2 className="text-center text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl md:text-2xl dark:text-white">{post.title}</h2>
@@ -61,7 +71,7 @@ if(!post){
               
           </header>
           <div className='prose max-w-none text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'>
-                    <p classNameName='px-10 py-5 '>{post.text}</p>
+                    <p className='px-10 py-5 '>{post.text}</p>
           </div>
 
             <div className='w-full mt-5 mb-5 flex flex-row-reverse gap-x-3.5 '>
@@ -89,7 +99,7 @@ if(!post){
                   </button>
               </form>
               <div>
-                {post.comments.map((comment)=><CommentItem key={comment._id} comment={comment}/>)}
+                {post.comments.map((comment)=><CommentItem key={comment._id} comment={comment} authorPic = {comment.user_photo}/>)}
               </div>
 
  

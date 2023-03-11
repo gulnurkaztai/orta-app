@@ -11,7 +11,7 @@ const registerUser = asyncHandler(async (req,res)=>{
     const {name, email, password} = req.body
 
     // Validation
-    if(!name || !email ){
+    if(!name || !email || !password){
         res.status(400)
         throw new Error("Please include all fields")
     }
@@ -36,6 +36,8 @@ const registerUser = asyncHandler(async (req,res)=>{
         name,
         email: emailLowerCase,
         password: hashedPassword,
+        avatarPic: '',
+        bio:'',
     })
 
     if(user){
@@ -93,25 +95,22 @@ const getMe = asyncHandler(async (req,res)=>{
 })
 
 // Get all users
-
 const getUsers = asyncHandler(async (req, res)=>{
     const users = await User.find();
     res.status(200).json(users)
 })
 
 const updateProfile = asyncHandler(async (req, res)=>{
+        const user = await User.findById(req.user.id)
+
+        if (!user) {
+            res.status(404)
+            throw new Error('User not found')
+          }
 
         const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {new:true});
-        console.log(req.user.id)
-        console.log(req.body)
         res.status(200).json(updatedUser)
-
-
 })
-
-// const uploadImg = asyncHandler(async (req, res) =>{
-//     const updatedImg = await User.
-// })
 
 module.exports = {
     registerUser,

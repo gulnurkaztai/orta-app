@@ -10,6 +10,7 @@ import defaultAvatar from '../assets/defaultAvatar.png'
 
 const UserIcon = () => {
     const {user} = useSelector((state)=>state.users)
+    const {avatarPic} = user
     const [userMenu, setUserMenu] = useState(false)
 
     const navigate = useNavigate()
@@ -27,7 +28,7 @@ const UserIcon = () => {
 
         <img 
           className="w-10 h-10 rounded-full basis-1/3"
-          src={defaultAvatar} 
+          src={avatarPic || defaultAvatar} 
           alt="avatar" 
           onClick={(e)=>setUserMenu(!userMenu)}
           data-dropdown-toggle="dropdownId"

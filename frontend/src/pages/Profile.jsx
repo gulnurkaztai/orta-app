@@ -14,26 +14,29 @@ const Profile = () => {
 
 
 
+
   const {user} = useSelector((state=>state.users))
-  const {avatarPic} = user
+
+
   const [name, setName] = useState(user.name);
   const [bio, setBio] = useState(user.bio);
-  const [avatar, setAvatar] = useState('');
+  const [avatarPic, setAvatarPic] = useState(user.avatarPic);
   const [settings, setSettings] = useState(false)
 
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  // useEffect(()=>{
+  //   dispatch(getMe({id: user._id})).unwrap().catch(toast.error)
+  //   })
 
-
-  console.log(user)
   
   const onPicUpload = async (e) =>{
     const file = e.target.files[0]
     const base64 = await convertToBase64(file)
-    setAvatar({...avatar, avatar:base64})
-    console.log("Uploaded")
+    setAvatarPic(base64)
+
   }
 
 
@@ -44,7 +47,7 @@ const Profile = () => {
     const updatedUser = {
       name,
       bio,
-      avatarPic: avatar
+      avatarPic
     }
 
       dispatch(updateProfile({id: user._id, ...updatedUser}))
@@ -55,50 +58,7 @@ const Profile = () => {
       navigate('/')
     }
 
-   // Store image in firebase
-//    const storeImage = async (image) => {
-//     return new Promise((resolve, reject) => {
 
-//       const fileName = `${uuidv4()}`
-
-//       const storageRef = ref(storage, fileName)
-
-//       const uploadTask = uploadBytesResumable(storageRef, image)
-
-//       uploadTask.on(
-//         'state_changed',
-//         (snapshot) => {
-//           const progress =
-//             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-//           console.log('Upload is ' + progress + '% done')
-//           switch (snapshot.state) {
-//             case 'paused':
-//               console.log('Upload is paused')
-//               break
-//             case 'running':
-//               console.log('Upload is running')
-//               break
-//             default:
-//               break
-//           }
-//         },
-//         (error) => {
-//           reject(error)
-//         },
-//         () => {
-//           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-//             resolve(downloadURL)
-//           })
-//         }
-//       )
-//     })
-//   }
-
-//   const imgURL = await Promise((file) => storeImage(file))
-// .catch(() => {
-//     toast.error('Images not uploaded')
-//     return
-//   })
 
 
 
@@ -114,8 +74,8 @@ const Profile = () => {
                     <div className='text-size-base h-18.5 w-18.5 relative inline-flex items-center justify-center rounded-xl text-white transition  delay-150 hover:-translate-y-1 hover:scale-110 hover:shadow-green-500 duration-200'>
                         <img src={user.avatarPic} alt='avatar pic' className='w-20 h-20 shadow-soft-sm rounded-full animate-[pulse_1s_ease-in-out_1]'/>
                         <div className='w-auto max-w-full ml-10 flex-col'>
-                            <p className='py-1'>{name}</p>
-                            <p className='py-1'>{bio}</p>
+                            <p className='py-1'>{user.name}</p>
+                            <p className='py-1'>{user.bio}</p>
 
                         </div>
                     </div>

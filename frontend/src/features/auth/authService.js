@@ -41,13 +41,13 @@ const getUsers = async () =>{
   return response.data
 }
 
-const getMe = async (token) =>{
+const getMe = async (id, token) =>{
   const config={
     headers: {
         Authorization: `Bearer ${token}`
     }
 }
-  const response = await axios.get(API_URL+'me', config)
+  const response = await axios.get(API_URL+`${id}/me`, config)
 console.log("service")
   return response.data
 }

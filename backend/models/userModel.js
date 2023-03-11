@@ -19,7 +19,7 @@ const userSchema = mongoose.Schema({
         min: 5
     },
     avatarPic: {
-        type: Buffer
+        type :String 
     },
     bio: {
         type: String,

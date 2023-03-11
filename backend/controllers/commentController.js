@@ -21,6 +21,7 @@ const createComment = asyncHandler(async (req,res)=>{
         text: req.body.text,
         post_id: req.params.id,
         user_id: req.user.id,
+        user_photo: req.user.avatarPic,
     })
 
     await Post.updateOne({_id:req.params.id},{$push: { comments: comment} })
