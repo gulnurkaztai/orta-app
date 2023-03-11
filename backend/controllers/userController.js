@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
-
+const fs = require('fs');
 
 
 // Register a new user
@@ -30,11 +30,12 @@ const registerUser = asyncHandler(async (req,res)=>{
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
 
+
     // Creaete User
     const user = await User.create({
         name,
         email: emailLowerCase,
-        password: hashedPassword
+        password: hashedPassword,
     })
 
     if(user){
@@ -73,7 +74,7 @@ const loginUser = asyncHandler(async(req,res)=>{
             _id: user._id,
             name: user.name,
             email:user.email,
-            avatarPic: '',
+            avatarPic: user.avatarPic,
             bio:'',
             token: generateToken(user._id)
         })
@@ -100,13 +101,17 @@ const getUsers = asyncHandler(async (req, res)=>{
 
 const updateProfile = asyncHandler(async (req, res)=>{
 
-        const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body);
+        const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {new:true});
         console.log(req.user.id)
         console.log(req.body)
         res.status(200).json(updatedUser)
 
 
 })
+
+// const uploadImg = asyncHandler(async (req, res) =>{
+//     const updatedImg = await User.
+// })
 
 module.exports = {
     registerUser,

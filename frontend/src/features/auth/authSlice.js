@@ -41,9 +41,10 @@ export const getUsers = createAsyncThunk('/users/getAll', async(_, thunkAPI) =>{
     }
 })
 
-export const getMe = createAsyncThunk('me', async(id, thunkAPI) =>{
+export const getMe = createAsyncThunk('/me', async(_, thunkAPI) =>{
     try {
-        return await authService.getMe(id)
+        const token = thunkAPI.getState().users.user.token
+        return await authService.getMe(token)
 
     } catch (error) {
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
@@ -104,7 +105,7 @@ export const authSlice = createSlice({
             const updatedUser = action.payload;
             state = {
               ...state,
-              posts: state.users.map((user) => {
+              users: state.users.map((user) => {
                 console.log(user._id);
                 return user._id === updatedUser._id ? { ...user, ...updatedUser } : user;
               }),

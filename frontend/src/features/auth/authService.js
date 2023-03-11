@@ -28,6 +28,7 @@ const updateProfile = async ({id, ...updatedUser}, token) => {
 }
 
   const response = await axios.patch(API_URL + `update/${id}`, updatedUser, config)
+
   console.log("service")
   console.log(id)
   console.log(updatedUser)
@@ -40,11 +41,16 @@ const getUsers = async () =>{
   return response.data
 }
 
-// const getMe = async (id) =>{
-//   const response = await axios.get(API_URL+id)
-
-//   return response.data
-// }
+const getMe = async (token) =>{
+  const config={
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+}
+  const response = await axios.get(API_URL+'me', config)
+console.log("service")
+  return response.data
+}
 
 const logout = () => localStorage.removeItem('user')
 
@@ -54,7 +60,7 @@ const authService={
     logout,
     login,
     getUsers,
-    // getMe,
+    getMe,
 
 }
 

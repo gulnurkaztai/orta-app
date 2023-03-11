@@ -8,5 +8,6 @@ router.post('/login', loginUser)
 router.get('/me', protect, getMe)
 router.get('/', getUsers)
 router.patch('/update/:id', protect, updateProfile)
+// router.post('/update/:id', protect, uploadImg)
 
 module.exports = router

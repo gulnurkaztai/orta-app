@@ -19,8 +19,7 @@ const userSchema = mongoose.Schema({
         min: 5
     },
     avatarPic: {
-        type: String,
-        default: ""
+        type: Buffer
     },
     bio: {
         type: String,
@@ -35,7 +34,8 @@ const userSchema = mongoose.Schema({
 },
 {
     timestamps: true
-}
+}, 
+{ typeKey: '$type' }
 )
 
 module.exports = mongoose.model('User', userSchema)

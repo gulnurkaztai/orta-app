@@ -4,55 +4,104 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {IoSettingsOutline} from 'react-icons/io5'
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../firebase/firebase';
+import {v4 as uuidv4} from 'uuid'
+import defaultAvatar from '../components/assets/defaultAvatar.png'
 
 
 const Profile = () => {
 
+
+
   const {user} = useSelector((state=>state.users))
+  const {avatarPic} = user
   const [name, setName] = useState(user.name);
   const [bio, setBio] = useState(user.bio);
-  const [avatarPic, setAvatarPic] = useState(user.avatarPic);
+  const [avatar, setAvatar] = useState('');
   const [settings, setSettings] = useState(false)
+
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
 
-  const {id} = useParams()
-  // console.log(id)
-  // console.log(user)
-  // console.log(user.bio)
-  // useEffect(()=>{
-  //   dispatch(getMe(id))
-  //   .unwrap()
-  //   .catch(toast.error)
-  // })
 
-  const onPicUpload = (e) =>{
+  console.log(user)
+  
+  const onPicUpload = async (e) =>{
     const file = e.target.files[0]
-    if(file) {
-      const avatarUrl = URL.createObjectURL(file)
-      setAvatarPic(avatarUrl)
-    }
-
+    const base64 = await convertToBase64(file)
+    setAvatar({...avatar, avatar:base64})
+    console.log("Uploaded")
   }
 
 
-
  
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
+
     const updatedUser = {
       name,
       bio,
-      avatarPic
+      avatarPic: avatar
     }
-    console.log(updateProfile())
-      dispatch(updateProfile({id: id, ...updatedUser}))
-      .unwrap()
+
+      dispatch(updateProfile({id: user._id, ...updatedUser}))
+      .unwrap((...updUser) =>{
+        console.log(...updUser.avatarPic)
+      })
       .catch(toast.error)
       navigate('/')
     }
+
+   // Store image in firebase
+//    const storeImage = async (image) => {
+//     return new Promise((resolve, reject) => {
+
+//       const fileName = `${uuidv4()}`
+
+//       const storageRef = ref(storage, fileName)
+
+//       const uploadTask = uploadBytesResumable(storageRef, image)
+
+//       uploadTask.on(
+//         'state_changed',
+//         (snapshot) => {
+//           const progress =
+//             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+//           console.log('Upload is ' + progress + '% done')
+//           switch (snapshot.state) {
+//             case 'paused':
+//               console.log('Upload is paused')
+//               break
+//             case 'running':
+//               console.log('Upload is running')
+//               break
+//             default:
+//               break
+//           }
+//         },
+//         (error) => {
+//           reject(error)
+//         },
+//         () => {
+//           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+//             resolve(downloadURL)
+//           })
+//         }
+//       )
+//     })
+//   }
+
+//   const imgURL = await Promise((file) => storeImage(file))
+// .catch(() => {
+//     toast.error('Images not uploaded')
+//     return
+//   })
+
+
+
 
   
       
@@ -63,7 +112,7 @@ const Profile = () => {
             <div className='flex flex-wrap justify-between'>
                 <div className=' w-auto max-w-full px-3'>
                     <div className='text-size-base h-18.5 w-18.5 relative inline-flex items-center justify-center rounded-xl text-white transition  delay-150 hover:-translate-y-1 hover:scale-110 hover:shadow-green-500 duration-200'>
-                        <img src={require('../components/assets/Mystique.jpg')} alt='avatar pic' className='w-20 h-20 shadow-soft-sm rounded-full animate-[pulse_1s_ease-in-out_1]'/>
+                        <img src={user.avatarPic} alt='avatar pic' className='w-20 h-20 shadow-soft-sm rounded-full animate-[pulse_1s_ease-in-out_1]'/>
                         <div className='w-auto max-w-full ml-10 flex-col'>
                             <p className='py-1'>{name}</p>
                             <p className='py-1'>{bio}</p>
@@ -112,12 +161,12 @@ const Profile = () => {
                       required
                       onChange={(e) => setBio(e.target.value)}
                     />
-
+                  {/* <label htmlFor="avatarPic"><img src={defaultAvatar} alt="" /></label> */}
                   <input
-                    accept='image/*'
-                    defaultValue={avatarPic}
+                    accept='.jpeg, .png, .jpg'
                     id='avatarPic'
                     type='file'
+                    name= "avatarPic"
                     className='block w-full text-sm my-2 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400'
                     onChange={onPicUpload}
                   />
@@ -137,4 +186,17 @@ const Profile = () => {
     </>
   )
 }
-export default Profile
+export default Profile 
+
+function convertToBase64(file){
+  return new Promise((resolve, reject)=>{
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file)
+    fileReader.onload = () =>{
+      resolve(fileReader.result)
+    }
+    fileReader.onerror=(error)=>{
+      reject(error)
+    }
+  })
+}
