@@ -36,6 +36,17 @@ export const getPost = createAsyncThunk('/posts/get', async(postId, thunkAPI) =>
     }
 })
 
+export const updatePost = createAsyncThunk('/edit', async(updatedPost, thunkAPI) =>{
+    try {
+        const token = thunkAPI.getState().users.user.token
+        console.log("slice")
+    console.log(updatedPost)
+        return await postService.updatePost(updatedPost, token)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(extractErrorMessage(error))
+    }
+})
+
 
 export const postSlice = createSlice({
     name: 'post',
@@ -53,6 +64,15 @@ export const postSlice = createSlice({
         })
         .addCase(createPost.fulfilled, (state, action)=>{
             state.post = action.payload
+        })
+        .addCase(updatePost.fulfilled, (state, action)=>{
+            const updatedPost = action.payload;
+            state = {
+              ...state,
+              posts: state.posts.map((post) => {
+                return post._id === post._id ? { ...post, ...updatedPost} : post;
+              }),
+            };
         })
     },
 })

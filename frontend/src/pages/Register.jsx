@@ -49,7 +49,7 @@ function Register() {
       dispatch(register(userData))
       .unwrap()
       .then((user)=>{
-        toast.success(`Welcome, ${user.name}`)
+        toast.success(`Salem, ${user.name}`)
         navigate('/')
       })
       .catch(toast.error)

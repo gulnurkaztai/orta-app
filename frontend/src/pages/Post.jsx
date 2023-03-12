@@ -4,11 +4,12 @@ import {likePost} from '../features/likes/likeSlice'
 import {createComment, getComments} from '../features/comments/commentSlice'
 import CommentItem from '../components/layout/CommentItem'
 import Spinner from '../components/spinner/Spinner'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import {toast} from 'react-toastify'
 import {FaRegHeart} from 'react-icons/fa'
 import {AiOutlineMessage} from 'react-icons/ai'
+import {RiDeleteBin5Line, RiEdit2Line} from 'react-icons/ri'
 import {BsBookmark} from 'react-icons/bs'
 import defaultAvatar from '../components/assets/defaultAvatar.png'
 
@@ -20,6 +21,7 @@ const {likes} = useSelector((state)=>state.likes)
 
 
 const dispatch = useDispatch()
+const navigate = useNavigate()
 const {postId} = useParams()
 useEffect(()=>{
     dispatch(getPost(postId)).unwrap().catch(toast.error)
@@ -44,6 +46,13 @@ const onCommentSubmit = (e) =>{
   .catch(toast.error)
 }
 
+const onEdit = (postId) =>{
+  navigate(`/posts/${postId}/edit`)
+}
+
+const onDelete = (e) =>{
+
+}
 
 if(!post){
   return <Spinner/>
@@ -56,7 +65,7 @@ if(!post){
   <div className="flex justify-between px-4 mx-auto max-w-screen-xl font font-display">
       <article className="mx-auto w-full max-w-3xl border format format-sm sm:format-base lg:format-lg format-blue dark:format-invert bg-gray-800 rounded-3xl p-10">
           <header className="mb-4 lg:mb-6 not-format px-10 py-5">
-              <div className="flex  -ml-1 mb-8 not-italic">
+              <div className="flex  -ml-1 mb-8 not-italic justify-between">
                   <Link to='#' className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
                       <img className="mr-4 w-16 h-16 rounded-full" src={post.user_photo || defaultAvatar} alt="avatar photo"/>
                       <div className=''>
@@ -64,6 +73,17 @@ if(!post){
                           <p className="text-base font-light text-gray-500 dark:text-gray-400"><time>{new Date(post.createdAt).toDateString()}</time></p>
                       </div>
                   </Link>
+                  {user ? (
+                   <>
+                      <div className='flex flex-row space-x-4'>
+                        <RiEdit2Line onClick={()=>onEdit(postId)}/>
+                        <RiDeleteBin5Line onClick={()=>onDelete}/>
+                      </div>
+                    </>) : (
+                      <>
+                      </>
+                    )}
+
               </div>
               <div className=' mb-4 mt-5'>
                     <h2 className="text-center text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl sm:text-xs md:text-2xl dark:text-white">{post.title}</h2>

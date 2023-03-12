@@ -73,9 +73,9 @@ const Profile = () => {
                 <div className=' w-auto max-w-full px-3'>
                     <div className='text-size-base h-18.5 w-18.5 relative inline-flex items-center justify-center rounded-xl text-white transition  delay-150 hover:-translate-y-1 hover:scale-110 hover:shadow-green-500 duration-200'>
                         <img src={user.avatarPic} alt='avatar pic' className='w-20 h-20 shadow-soft-sm rounded-full animate-[pulse_1s_ease-in-out_1]'/>
-                        <div className='w-auto max-w-full ml-10 flex-col'>
-                            <p className='py-1'>{user.name}</p>
-                            <p className='py-1'>{user.bio}</p>
+                        <div className='w-auto max-w-full ml-10 flex-col '>
+                            <p className='py-1 ml-5'>{user.name}</p>
+                            <p className='py-1 ml-5'>{user.bio}</p>
 
                         </div>
                     </div>
@@ -96,11 +96,11 @@ const Profile = () => {
           <form onSubmit={onSubmit}>
           <div className='flex flex-wrap mt-10 pl-3'>
             <div className='flex flex-col '>
-              <p className='my-auto flex text-center w-30 pr-10'>Esımıñ</p>
-              <p className='my-auto flex text-center w-30 pr-10'>Bio</p>
+              <p className='mt-4 mb-5 flex text-center w-30 pr-10'>Esımıñ</p>
+              <p className='mt-3 flex text-center w-30 pr-10'>Bio</p>
 
             </div>
-                <div className='flex flex-col ml-5'>
+                <div className='flex flex-col ml-10'>
                     <input
                     defaultValue={name}
                       type="text"

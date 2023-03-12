@@ -27,10 +27,22 @@ const getPost = async (postId) =>{
     return response.data
 }
 
+const updatePost = async ({postId, ...updatedPost}, token) => {
+    const config={
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  }
+    const response = await axios.patch(API_URL + `${postId}/edit`, updatedPost, config)
+    console.log(postId)
+    return response.data
+  }
+
 const postService = {
     createPost,
     getPosts,
-    getPost
+    getPost,
+    updatePost
 }
 
 export default postService

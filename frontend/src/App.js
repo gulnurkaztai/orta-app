@@ -11,6 +11,7 @@ import PrivateRoute from './components/privateRoute/PrivateRoute';
 import Posts from './pages/Posts';
 import Post from './pages/Post';
 import Profile from './pages/Profile';
+import EditPost from './pages/EditPost';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path='/create' element={<PrivateRoute><Write/></PrivateRoute>}/>
           <Route path='/posts' element={<Posts/>}/>
           <Route path='/posts/:postId' element={<Post/>}/>
-
+          <Route path='/posts/:postId/edit' element={<EditPost/>}/>
         </Routes>
       </main>
       <Footer/>
