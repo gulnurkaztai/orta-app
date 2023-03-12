@@ -23,17 +23,17 @@ app.use('/api/posts', require('./routes/postRoutes'))
 app.use('/api/posts', require('./routes/likeRoutes'))
 
 // Serve Frontend
-// if (process.env.NODE_ENV === 'production') {
-//   // Set build folder as static
-//   app.use(express.static(path.join(__dirname, '../frontend/build')))
-//   app.get('*', (_, res) => {
-//     res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
-//   })
-// } else {
-//   app.get('/', (_, res) => {
-//     res.status(200).json({ message: 'Welcome to the ORTA app API' })
-//   })
-// }
+if (process.env.NODE_ENV === 'production') {
+  // Set build folder as static
+  app.use(express.static(path.join(__dirname, '../frontend/build')))
+  app.get('*', (_, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+  })
+} else {
+  app.get('/', (_, res) => {
+    res.status(200).json({ message: 'Welcome to the ORTA app API' })
+  })
+}
 
 // Middlewares
 app.use(errorHandler)
