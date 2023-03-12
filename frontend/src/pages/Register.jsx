@@ -61,7 +61,7 @@ function Register() {
   }
  
   return (
-    <div className='flex flex-col items-center justify-center w-full flex-1 text-center text-gray-800'>
+    <div className='flex flex-col h-screen items-center justify-center w-full flex-1 text-center text-gray-800'>
       <div className='bg-white rounded-2xl shadow-2xl shadow-green-300 flex flex-row w-3/5 max-w-4xl'>
 
       <div className='w-2/5 bg-green-200 rounded-tl-2xl rounded-bl-2xl py-36 px-12 font-display '>
@@ -80,7 +80,7 @@ function Register() {
           <p className='font-display  mb-3'>Avtorizasiadan ötıñız</p>
 
         {/* Sign UP Form */}
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center '>
  
         <form onSubmit={onSubmit}>
 
@@ -101,7 +101,7 @@ function Register() {
           <FaRegEnvelope className='text-gray-400 m-2'/>
             <input
               type="email"
-              className="bg-gray-100 outline-none text-sm flex-1"
+              className="bg-gray-100 outline-none text-sm flex-1 "
               id="email"
               name="email"
               value={email}
@@ -114,7 +114,7 @@ function Register() {
           <BiLock className='text-gray-400 m-2'/>
             <input
               type="password"
-              className="bg-gray-100 outline-none text-sm flex-1"
+              className="bg-gray-100 outline-none text-sm flex-1 "
               id="password"
               name="password"
               value={password}
@@ -127,7 +127,7 @@ function Register() {
           <BiLock className='text-gray-400 m-2'/>
             <input
               type="password"
-              className="bg-gray-100 outline-none text-sm flex-1"
+              className="bg-gray-100 outline-none text-sm flex-1 "
               id="password2"
               name="password2"
               value={password2}
@@ -137,7 +137,7 @@ function Register() {
             />
           </div>
 
-          <button className=" bg-green-200 py-2 px-9 font-display text-gray-900  hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">tırkelu</button>
+          <button className=" bg-green-200 w-full sm:w-32 py-2 px-9 font-display text-gray-900  hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">tırkelu</button>
 
           </form>
     </div>
@@ -148,8 +148,8 @@ function Register() {
         <p className='font-display text-gray-400 mb-5'>äleumettık jelıñızben kırıñız</p>
         <div className='flex justify-center '>
            <GoogleLogin className='border-2 border-gray-200 rounded-full p-3 mx-1'/>
-          <FaGithub className='border-2 border-gray-200 rounded-full p-3 mx-1'/>
-          <FaFacebook className='border-2 border-gray-200 rounded-full p-3 mx-1'/>
+          {/* <FaGithub className='border-2 border-gray-200 rounded-full p-3 mx-1'/>
+          <FaFacebook className='border-2 border-gray-200 rounded-full p-3 mx-1'/> */}
         </div>
     </div>
     </div>

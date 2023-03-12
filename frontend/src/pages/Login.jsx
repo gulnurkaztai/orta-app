@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {FaGithub, FaFacebook, FaGoogle, FaRegEnvelope} from 'react-icons/fa'
 import {BiLock} from 'react-icons/bi'
+import GoogleLogin from '../components/user/GoogleLogin'
 
 
 
@@ -105,9 +106,9 @@ const Login = () => {
       <p className='mb-4 font-display text-gray-400'>NEMESE </p>
         <p className='font-display text-gray-400 mb-5'>äleumettık jelıñızben kırıñız</p>
         <div className='flex justify-center my-2'>
-          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaFacebook/></Link>
-          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaGithub/></Link>
-          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaGoogle/></Link>
+        <GoogleLogin className='border-2 border-gray-200 rounded-full p-3 mx-1'/>
+          {/* <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaGithub/></Link>
+          <Link to='#' className='border-2 border-gray-200 rounded-full p-3 mx-1'><FaGoogle/></Link> */}
         </div>
 
 
