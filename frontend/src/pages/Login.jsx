@@ -53,7 +53,7 @@ const Login = () => {
     <div className='flex flex-col items-center justify-center w-full flex-1 text-center text-gray-800'>
       <div className='bg-white rounded-2xl shadow-2xl shadow-green-300 flex flex-row w-3/5 max-w-4xl'>
 
-        <div className='w-3/5 p-5'>
+        <div className='w-3/5 max-[800px]:w-full p-5'>
           <div className='py-5'>
             <h1 className='font-display font-semibold text-2xl'>
               KIRU
@@ -62,15 +62,15 @@ const Login = () => {
           <p className='font-display  mb-3'>Avtorizasiadan ötıñız</p>
 
         {/* Sign in Form */}
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center justify-center'>
 
           <form onSubmit={onSubmit}>
 
-            <div className='font-display bg-gray-100 w-64 p-2 flex items-center rounded-2xl  mb-1'>
+            <div className='font-display bg-gray-100  p-2 flex  rounded-2xl  mb-1'>
               <FaRegEnvelope className='text-gray-400 m-2'/>
               <input
                 type='email'
-                className='bg-gray-100 outline-none text-sm flex-1'
+                className='w-full bg-gray-100 outline-none text-sm flex-1'
                 id='email'
                 name='email'
                 value={email}
@@ -79,11 +79,11 @@ const Login = () => {
                 required
               />
             </div>
-            <div className='font-display bg-gray-100 w-64 p-2 flex items-center rounded-2xl'>
+            <div className='font-display bg-gray-100  p-2 flex  rounded-2xl'>
             <BiLock className='text-gray-400 m-2'/>
               <input
                 type='password'
-                className='bg-gray-100 outline-none text-sm flex-1'
+                className='w-full bg-gray-100 outline-none text-sm flex-1'
                 id='password'
                 name='password'
                 value={password}
@@ -92,9 +92,9 @@ const Login = () => {
                 required
               />
             </div>
-            <div className='flex justify-between w-64 my-7'>
-              <label className='flex items-center text-xs'><input type="checkbox" name='remeber' className='mr-1'/>Esıñe saqta</label>
-              <a href="#" className='text-xs'>Qūpiasözdı ūmyttyñyz ba?</a>
+            <div className='flex justify-between  my-7'>
+              {/* <label className='flex items-center text-xs'><input type="checkbox" name='remeber' className='mr-1'/>Esıñe saqta</label>
+              <a href="#" className='text-xs'>Qūpiasözdı ūmyttyñyz ba?</a> */}
             </div>
               <button className=" bg-green-200 py-2 px-9 font-display text-gray-900  hover:bg-gray-800 hover:text-white rounded-xl transition duration-300">KIRU</button>
           </form>
@@ -102,7 +102,7 @@ const Login = () => {
         </div>
 
       {/* log in with social media */}
-      <div className='border-2 w-60 mb-2 inline-block my-6'></div>
+      <div className='border-2 w-full mb-2 inline-block my-6'></div>
       <p className='mb-4 font-display text-gray-400'>NEMESE </p>
         <p className='font-display text-gray-400 mb-5'>äleumettık jelıñızben kırıñız</p>
         <div className='flex justify-center my-2'>
@@ -114,10 +114,10 @@ const Login = () => {
 
         </div>
 
-        <div className='w-2/5 bg-green-200 rounded-tr-2xl rounded-br-2xl py-36 px-12 font-display '>
+        <div className='w-2/5 max-[800px]:hidden justify-center items-center bg-green-200 rounded-tr-2xl rounded-br-2xl py-36 px-12 font-display '>
           <h2 className='text-xl font-semibold mb-16 uppercase text-gray-800' >Salem, Dos!</h2>
           <p className='mb-10 text-gray-800'>Bızben saiahatty bastau üşın tırkelıñız!</p>
-          <Link to='/register' className="block bg-white py-3 px-7 font-display text-gray-800 hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">tırkelu</Link>
+          <Link to='/register' className="block mx-auto bg-white py-3  font-display text-gray-800 hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">tırkelu</Link>
 
         </div>
 
