@@ -20,6 +20,11 @@ const login = async (userData) => {
     return response.data
 }
 
+const resetPasswordRequest = async (userEmail) => {
+  const response = await axios.post(API_URL + "reset-request", userEmail)
+  return response.data
+}
+
 const updateProfile = async ({id, ...updatedUser}, token) => {
   const config={
     headers: {
@@ -42,7 +47,8 @@ const getMe = async (id, token) =>{
         Authorization: `Bearer ${token}`
     }
 }
-  const response = await axios.get(API_URL+`${id}/me`, config)
+
+const response = await axios.get(API_URL+`${id}/me`, config)
 console.log("service")
   return response.data
 }
@@ -54,6 +60,7 @@ const authService={
     register,
     logout,
     login,
+    resetPasswordRequest, 
     getUsers,
     getMe,
 

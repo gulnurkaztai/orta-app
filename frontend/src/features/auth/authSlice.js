@@ -28,6 +28,15 @@ export const login = createAsyncThunk('auth/login', async(user, thunkAPI)=>{
     }
 })
 
+export const resetPasswordRequest = createAsyncThunk('auth/reset-password-request', async(userEmail, thunkAPI)=>{
+    try {
+        return await authService.resetPasswordRequest (userEmail)
+
+    } catch (error) {
+        return thunkAPI.rejectWithValue(extractErrorMessage(error))
+    }
+})
+
 export const logout = createAction('auth/logout', ()=>{
     authService.logout()
     return{}
@@ -91,7 +100,9 @@ export const authSlice = createSlice({
             state.user = action.payload
             state.isLoading=false
         })
-
+        // .addCase(resetPasswordRequest.fulfilled, (state, action)=>{
+        //     state.isLoading=false
+        // })
         .addCase(login.rejected, (state, action)=>{
             state.isLoading=false
         })

@@ -12,6 +12,7 @@ import Posts from './pages/Posts';
 import Post from './pages/Post';
 import Profile from './pages/Profile';
 import EditPost from './pages/EditPost';
+import PasswordReset from './pages/PasswordReset';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/reset-password-request' element={<PasswordReset/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/me' element={<Profile/>}/>
           <Route path='/create' element={<PrivateRoute><Write/></PrivateRoute>}/>

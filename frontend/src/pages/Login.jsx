@@ -92,9 +92,9 @@ const Login = () => {
                 required
               />
             </div>
-            <div className='flex justify-between  my-7'>
-              {/* <label className='flex items-center text-xs'><input type="checkbox" name='remeber' className='mr-1'/>Esıñe saqta</label>
-              <a href="#" className='text-xs'>Qūpiasözdı ūmyttyñyz ba?</a> */}
+            <div className='flex my-7 justify-center'>
+              {/* <label className='flex items-center text-xs'><input type="checkbox" name='remeber' className='mr-1'/>Esıñe saqta</label> */}
+              <Link to="/reset-password-request" className='text-xs'>Qūpiasözdı ūmyttyñyz ba?</Link>
             </div>
               <button className=" bg-green-200 py-2 px-9 font-display text-gray-900  hover:bg-gray-800 hover:text-white rounded-xl transition duration-300">KIRU</button>
           </form>
