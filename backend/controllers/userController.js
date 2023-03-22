@@ -2,7 +2,9 @@ const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
-const fs = require('fs');
+const Token = require("../models/token");
+const sendEmail = require("../utils/sendEmail");
+const crypto = require("crypto");
 
 
 // Register a new user
@@ -86,6 +88,80 @@ const loginUser = asyncHandler(async(req,res)=>{
     }
 })
 
+// Sendinf email for password reset
+const requestPasswordReset = asyncHandler(async(req, res)=>{
+    try{
+    const {email} = req.body
+
+    const emailLowerCase = email.toLowerCase();
+
+    // Find if user exists
+
+    const user = await User.findOne({email: emailLowerCase})
+
+    if (!user) {
+        res.status(404)
+        throw new Error("User does not exist")
+    }
+    let token = await Token.findOne({ user_id: user._id });
+    let resetToken = crypto.randomBytes(32).toString("hex");
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(resetToken, salt);
+
+    if (!token) {
+        token =  await new Token({
+      user_id: user._id,
+      token: hash,
+    }).save();
+}console.log(token)
+    const link = `${process.env.BASE_URL}reset-request/id=${user._id}/token=${resetToken}/`;
+    await sendEmail(user.email,"Password Reset Request",{link}, "../utils/requestResetPassword.handlebars");
+    console.log(link)
+    res.status(201).send({message: "SENTT"})
+    
+  }catch(error){
+    console.log(error)
+    res.status(500).send({message: "NOOT SENT"})
+  }
+
+})
+
+// Reset password 
+
+const resetPassword = asyncHandler(async(req, res) => {
+
+    const {user_id, token, password} = req.body;
+    let passwordResetToken = await Token.findOne({ user_id });
+    console.log(user_id)
+    console.log(passwordResetToken)
+    if (!passwordResetToken) {
+        res.status(404)
+      throw new Error("Invalid or expired password reset token");
+    }
+    const isValid = await bcrypt.compare(token, passwordResetToken.token);
+    if (!isValid) {
+      throw new Error("Invalid or expired password reset token!");
+    }
+    const hash = await bcrypt.hash(password, 10);
+    await User.updateOne(
+      { _id: user_id },
+      { $set: { password: hash } },
+      { new: true }
+    );
+    const user = await User.findById({ _id: user_id });
+    sendEmail(
+      user.email,
+      "Password Reset Successfully",
+      {
+        name: user.name,
+      },
+      "../utils/resetPassword.handlebars"
+    );
+    await passwordResetToken.deleteOne();
+    return true;
+  })
+
+
 // Get current user
 // /api/users/me
 // Private
@@ -112,9 +188,12 @@ const updateProfile = asyncHandler(async (req, res)=>{
         res.status(200).json(updatedUser)
 })
 
+
 module.exports = {
     registerUser,
     loginUser,
+    requestPasswordReset ,
+    resetPassword,
     getMe,
     getUsers,
     updateProfile
