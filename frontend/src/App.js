@@ -12,6 +12,7 @@ import Posts from './pages/Posts';
 import Post from './pages/Post';
 import Profile from './pages/Profile';
 import EditPost from './pages/EditPost';
+import PasswordResetRequest from './pages/PasswordResetRequest';
 import PasswordReset from './pages/PasswordReset';
 
 function App() {
@@ -24,7 +25,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/reset-password-request' element={<PasswordReset/>}/>
+          <Route path='/reset-password-request' element={<PasswordResetRequest/>}/>
+          <Route path='/reset-request/:token' element={<PasswordReset/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/me' element={<Profile/>}/>
           <Route path='/create' element={<PrivateRoute><Write/></PrivateRoute>}/>

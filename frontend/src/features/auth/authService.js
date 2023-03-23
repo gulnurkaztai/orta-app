@@ -25,6 +25,11 @@ const resetPasswordRequest = async (userEmail) => {
   return response.data
 }
 
+const resetPassword = async (password) => {
+  const response = await axios.post(API_URL + "reset", password)
+  return response.data
+}
+
 const updateProfile = async ({id, ...updatedUser}, token) => {
   const config={
     headers: {
@@ -61,6 +66,7 @@ const authService={
     logout,
     login,
     resetPasswordRequest, 
+    resetPassword,
     getUsers,
     getMe,
 

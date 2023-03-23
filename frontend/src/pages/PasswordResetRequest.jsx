@@ -1,24 +1,23 @@
 import {toast} from 'react-toastify'
 import {useState, } from 'react'
-import {resetPassword} from '../features/auth/authSlice'
+import {resetPasswordRequest} from '../features/auth/authSlice'
 import Spinner from '../components/spinner/Spinner'
 import {useSelector, useDispatch} from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import {BiLock} from 'react-icons/bi'
+import { useNavigate } from 'react-router-dom'
+import {FaRegEnvelope} from 'react-icons/fa'
 
 
-const PasswordReset = () => {
-    const [password, setPassword] = useState("")
+const PasswordResetRequest = () => {
+    const [email, setEmail] = useState("")
     
       const dispatch = useDispatch()
       const navigate = useNavigate()
-      const {token}= useParams()
     
       const {isLoading} = useSelector((state)=>state.users)
     
     
       const onChange = (e) => {
-        setPassword((prevState) => ({
+        setEmail((prevState) => ({
           ...prevState,
           [e.target.name]: e.target.value,
         }))
@@ -26,15 +25,11 @@ const PasswordReset = () => {
     
       const onSubmit = (e) => {
         e.preventDefault()
-        const data = {
-            password,
-            token,
-          };
-        dispatch(resetPassword(data))
+        dispatch(resetPasswordRequest(email))
         .unwrap()
         .then(()=>{
-          toast.success("Your password was reset successfully")
-          navigate('/login')
+          toast.success("The link for reset was sent to your email")
+          navigate('/')
         })
         .catch(toast.error)
       }
@@ -50,35 +45,27 @@ const PasswordReset = () => {
         <div className='w-full p-5 px-3'>
           <div className='py-5 '>
             <h1 className='font-display font-semibold text-2xl'>
-            Jana Qūpia Söz
+            Qūpia sözdı qaita jükteu
             </h1>
           </div>
+
+
+
         <div className='flex flex-col items-center justify-center mb-3'>
 
           <form onSubmit={onSubmit}>
-            <div className='font-display bg-gray-100  p-2 flex items-center rounded-2xl mb-1'>
-            <BiLock className='text-gray-400 m-2'/>
-                <input
-                type="password"
-                className="w-full bg-gray-100 outline-none  flex-1 "
-                id="password"
-                name="password"
+
+            <div className='font-display bg-gray-100  p-2 flex  rounded-2xl  mb-5'>
+              <FaRegEnvelope className='text-gray-400 m-2'/>
+              <input
+                type='email'
+                className='w-full bg-gray-100 outline-none text-sm flex-1 '
+                id='email'
+                name='email'
                 onChange={onChange}
-                placeholder="Create a new password"
+                placeholder='Enter your email'
                 required
-                />
-            </div>
-            <div className='font-display bg-gray-100  p-2 flex items-center rounded-2xl mb-3'>
-            <BiLock className='text-gray-400 m-2'/>
-                <input
-                type="password"
-                className="w-full bg-gray-100 outline-none  flex-1 "
-                id="password2"
-                name="password2"
-                onChange={onChange}
-                placeholder="Confirm your new password"
-                required
-                />
+              />
             </div>
             <button className=" bg-green-200 py-2 px-9 font-display text-gray-900  hover:bg-gray-800 hover:text-white rounded-xl transition duration-300 uppercase">qaita jükte</button>
           </form>
@@ -93,4 +80,4 @@ const PasswordReset = () => {
     </>
   )
 }
-export default PasswordReset
+export default PasswordResetRequest

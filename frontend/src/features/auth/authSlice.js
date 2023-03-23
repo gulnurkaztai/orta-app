@@ -30,7 +30,16 @@ export const login = createAsyncThunk('auth/login', async(user, thunkAPI)=>{
 
 export const resetPasswordRequest = createAsyncThunk('auth/reset-password-request', async(userEmail, thunkAPI)=>{
     try {
-        return await authService.resetPasswordRequest (userEmail)
+        return await authService.resetPasswordRequest(userEmail)
+
+    } catch (error) {
+        return thunkAPI.rejectWithValue(extractErrorMessage(error))
+    }
+})
+
+export const resetPassword = createAsyncThunk('auth/reset-password', async(password, thunkAPI)=>{
+    try {
+        return await authService.resetPassword(password)
 
     } catch (error) {
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
@@ -53,7 +62,7 @@ export const getUsers = createAsyncThunk('/users/getAll', async(_, thunkAPI) =>{
 export const getMe = createAsyncThunk('/me', async(id, thunkAPI) =>{
     try {
         const token = thunkAPI.getState(id).users.user.token
-        return await authService.getMe(token)
+        return await authService.getMe(id, token)
 
     } catch (error) {
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
