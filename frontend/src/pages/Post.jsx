@@ -1,5 +1,5 @@
 import {useSelector, useDispatch} from 'react-redux'
-import {getPost} from '../features/posts/postSlice'
+import {getPost, deletePost} from '../features/posts/postSlice'
 import {likePost} from '../features/likes/likeSlice'
 import {createComment, getComments} from '../features/comments/commentSlice'
 import CommentItem from '../components/layout/CommentItem'
@@ -23,6 +23,7 @@ const {likes} = useSelector((state)=>state.likes)
 const dispatch = useDispatch()
 const navigate = useNavigate()
 const {postId} = useParams()
+console.log(postId)
 useEffect(()=>{
     dispatch(getPost(postId)).unwrap().catch(toast.error)
 },[postId,dispatch])
@@ -50,7 +51,14 @@ const onEdit = (postId) =>{
   navigate(`/posts/${postId}/edit`)
 }
 
-const onDelete = (e) =>{
+const onDelete = (postId) =>{
+  dispatch(deletePost(postId))
+  .unwrap()
+  .then(() => {
+    toast.success("Your post was successfully deleted")
+    navigate("/")
+  })
+  .catch(toast.error)
 
 }
 
@@ -73,16 +81,14 @@ if(!post){
                           <p className="text-base font-light text-gray-500 dark:text-gray-400"><time>{new Date(post.createdAt).toDateString()}</time></p>
                       </div>
                   </Link>
-                  {user ? (
+                  {user._id === post.user_id && (
                    <>
                       <div className='flex flex-row space-x-4'>
                         <RiEdit2Line onClick={()=>onEdit(postId)}/>
-                        <RiDeleteBin5Line onClick={()=>onDelete}/>
+                        <RiDeleteBin5Line onClick={()=>onDelete(postId)}/>
                       </div>
-                    </>) : (
-                      <>
-                      </>
-                    )}
+                    </>) 
+                    }
 
               </div>
               <div className=' mb-4 mt-5'>

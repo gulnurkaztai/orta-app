@@ -10,7 +10,7 @@ import defaultAvatar from '../assets/defaultAvatar.png'
 
 const UserIcon = () => {
     const {user} = useSelector((state)=>state.users)
-    const {avatarPic} = user
+    const {_id, avatarPic} = user
     const [userMenu, setUserMenu] = useState(false)
 
     const navigate = useNavigate()
@@ -38,8 +38,8 @@ const UserIcon = () => {
     <div id="dropdown" className={`${userMenu? "block" : "hidden"} absolute right-0 top-10 bg-white  rounded-lg shadow w-32 dark:bg-gray-700`} >
         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 font-display">
         <li>
-            <Link to='/me' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</Link>
-          </li>
+            <Link to={`/${_id}/me`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</Link>
+        </li>
           <li>
               <button className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white font-display' onClick={onLogout}>
                 Logout

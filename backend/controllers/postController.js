@@ -59,7 +59,7 @@ const deletePost = asyncHandler(async (req,res)=>{
       throw new Error('post not found')
     }
   
-    if (post.user.toString() !== req.user.id) {
+    if (post.user_id.toString() !== req.user.id) {
       res.status(401)
       throw new Error('Not Authorized')
     }
@@ -78,7 +78,7 @@ const updatePost = asyncHandler(async (req,res)=>{
       throw new Error('post not found')
     }
   
-    if (post.user.toString() !== req.user.id) {
+    if (post.user_id.toString() !== req.user.id) {
       res.status(401)
       throw new Error('Not Authorized')
     }

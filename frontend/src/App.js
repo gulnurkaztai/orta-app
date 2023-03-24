@@ -28,7 +28,7 @@ function App() {
           <Route path='/reset-password-request' element={<PasswordResetRequest/>}/>
           <Route path='/reset-request/:token' element={<PasswordReset/>}/>
           <Route path='/register' element={<Register/>}/>
-          <Route path='/me' element={<Profile/>}/>
+          <Route path='/:id/me' element={<Profile/>}/>
           <Route path='/create' element={<PrivateRoute><Write/></PrivateRoute>}/>
           <Route path='/posts' element={<Posts/>}/>
           <Route path='/posts/:postId' element={<Post/>}/>

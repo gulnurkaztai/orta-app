@@ -12,7 +12,7 @@ const EditPost = () => {
     const [article, setArticle] = useState({post})
 
 
-const {title, text} = post;
+const {title, text} = article;
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -26,7 +26,7 @@ const {title, text} = post;
     const onSubmit = async (e) => {
         e.preventDefault()
         const updatedPost = {title, text}
-        dispatch(updatePost({id:postId, ...updatedPost}))
+        dispatch(updatePost({postId, ...updatedPost}))
         .unwrap()
         .then(() => {
           toast.success('Jazbañyz jañartyldy!')
@@ -50,7 +50,7 @@ const {title, text} = post;
                                 className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
                                 id="title"
                                 name="title"
-                                defaultValue={title}
+                                defaultValue={post.title}
                                 onChange={onChange}
                                 placeholder="Taqyryp"
                                 required
@@ -64,7 +64,7 @@ const {title, text} = post;
                                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
                                     id="text"
                                     name="text"
-                                    defaultValue={text}
+                                    defaultValue={post.text}
                                     onChange={onChange}
                                     placeholder="Oqiğañyzben bölısıñız... Basqalardy şabyttandyryñyz"
                                     required

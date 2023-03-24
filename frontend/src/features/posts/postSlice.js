@@ -39,14 +39,20 @@ export const getPost = createAsyncThunk('/posts/get', async(postId, thunkAPI) =>
 export const updatePost = createAsyncThunk('/edit', async(updatedPost, thunkAPI) =>{
     try {
         const token = thunkAPI.getState().users.user.token
-        console.log("slice")
-    console.log(updatedPost)
         return await postService.updatePost(updatedPost, token)
     } catch (error) {
         return thunkAPI.rejectWithValue(extractErrorMessage(error))
     }
 })
 
+export const deletePost = createAsyncThunk('/delete', async(postId, thunkAPI) =>{
+    try {
+        const token = thunkAPI.getState().users.user.token
+        return await postService.deletePost(postId, token)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(extractErrorMessage(error))
+    }
+})
 
 export const postSlice = createSlice({
     name: 'post',
@@ -74,6 +80,12 @@ export const postSlice = createSlice({
               }),
             };
         })
+        .addCase(deletePost.fulfilled, (state, action)=>{
+            state.posts.filter((post) => {
+                  return post._id !== action.payload
+                })
+              }
+        )
     },
 })
 

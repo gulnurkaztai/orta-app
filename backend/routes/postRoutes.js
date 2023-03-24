@@ -10,7 +10,7 @@ router.use('/:id/comments', commentRouter)
 
 router.route('/').get(getPosts).post(protect, createPost)
 router.route('/:id').get(getPost).delete(protect, deletePost)
-router.route('/:id/edit').put(protect, updatePost)
+router.route('/:id/edit').patch(protect, updatePost)
 
 
 module.exports = router;

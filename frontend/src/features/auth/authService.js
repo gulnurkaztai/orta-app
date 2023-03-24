@@ -36,6 +36,8 @@ const updateProfile = async ({id, ...updatedUser}, token) => {
         Authorization: `Bearer ${token}`
     }
 }
+console.log(id)
+console.log(token)
   const response = await axios.patch(API_URL + `update/${id}`, updatedUser, config)
   return response.data
 }
@@ -52,7 +54,8 @@ const getMe = async (id, token) =>{
         Authorization: `Bearer ${token}`
     }
 }
-
+console.log(id)
+console.log(token)
 const response = await axios.get(API_URL+`${id}/me`, config)
 console.log("service")
   return response.data

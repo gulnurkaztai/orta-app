@@ -12,12 +12,7 @@ import defaultAvatar from '../components/assets/defaultAvatar.png'
 
 const Profile = () => {
 
-
-
-
   const {user} = useSelector((state=>state.users))
-
-
   const [name, setName] = useState(user.name);
   const [bio, setBio] = useState(user.bio);
   const [avatarPic, setAvatarPic] = useState(user.avatarPic);
@@ -26,10 +21,12 @@ const Profile = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const {id} = useParams()
 
-  // useEffect(()=>{
-  //   dispatch(getMe({id: user._id})).unwrap().catch(toast.error)
-  //   })
+  useEffect(()=>{
+    dispatch(getMe(id)).unwrap().catch(toast.error)
+  },[id,dispatch] )
+
 
   
   const onPicUpload = async (e) =>{
@@ -38,7 +35,6 @@ const Profile = () => {
     setAvatarPic(base64)
 
   }
-
 
  
   const onSubmit = async(e) => {
@@ -50,12 +46,12 @@ const Profile = () => {
       avatarPic
     }
 
-      dispatch(updateProfile({id: user._id, ...updatedUser}))
+      dispatch(updateProfile({id, ...updatedUser}))
       .unwrap((...updUser) =>{
         console.log(...updUser.avatarPic)
       })
       .catch(toast.error)
-      navigate('/')
+      navigate(`${id}/me`)
     }
 
 

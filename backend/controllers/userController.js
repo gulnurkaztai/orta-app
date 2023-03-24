@@ -96,7 +96,6 @@ const requestPasswordReset = asyncHandler(async(req, res)=>{
     const emailLowerCase = email.toLowerCase();
 
     // Find if user exists
-
     const user = await User.findOne({email: emailLowerCase})
 
     if (!user) {
@@ -114,7 +113,7 @@ const requestPasswordReset = asyncHandler(async(req, res)=>{
       token: hash,
     }).save();
 }console.log(token)
-    const link = `${process.env.BASE_URL}reset-request/id=${user._id}/token=${resetToken}/`;
+    const link = `localhost:3000/reset-request/${resetToken}`;
     await sendEmail(user.email,"Password Reset Request",{link}, "../utils/requestResetPassword.handlebars");
     console.log(link)
     res.status(201).send({message: "SENTT"})
@@ -167,6 +166,10 @@ const resetPassword = asyncHandler(async(req, res) => {
 // Private
 const getMe = asyncHandler(async (req,res)=>{
     const user = await User.findById(req.user.id)
+    if (!user) {
+        res.status(404)
+        throw new Error('User not found')
+      }
     res.status(200).json(user)
 })
 
