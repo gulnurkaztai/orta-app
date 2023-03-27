@@ -47,11 +47,11 @@ const Profile = () => {
     }
 
       dispatch(updateProfile({id, ...updatedUser}))
-      .unwrap((...updUser) =>{
+      .unwrap((updUser) =>{
         console.log(...updUser.avatarPic)
       })
       .catch(toast.error)
-      navigate(`${id}/me`)
+      navigate("/")
     }
 
 

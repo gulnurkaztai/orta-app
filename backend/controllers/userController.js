@@ -113,7 +113,7 @@ const requestPasswordReset = asyncHandler(async(req, res)=>{
       token: hash,
     }).save();
 }console.log(token)
-    const link = `localhost:3000/reset-request/${resetToken}`;
+    const link = `localhost:3000/reset/${resetToken}/${user._id}`;
     await sendEmail(user.email,"Password Reset Request",{link}, "../utils/requestResetPassword.handlebars");
     console.log(link)
     res.status(201).send({message: "SENTT"})
@@ -133,10 +133,7 @@ const resetPassword = asyncHandler(async(req, res) => {
     let passwordResetToken = await Token.findOne({ user_id });
     console.log(user_id)
     console.log(passwordResetToken)
-    if (!passwordResetToken) {
-        res.status(404)
-      throw new Error("Invalid or expired password reset token");
-    }
+
     const isValid = await bcrypt.compare(token, passwordResetToken.token);
     if (!isValid) {
       throw new Error("Invalid or expired password reset token!");

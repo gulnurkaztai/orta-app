@@ -12,7 +12,7 @@ const PasswordReset = () => {
     
       const dispatch = useDispatch()
       const navigate = useNavigate()
-      const {token}= useParams()
+      const {token, user_id}= useParams()
     
       const {isLoading} = useSelector((state)=>state.users)
     
@@ -29,6 +29,7 @@ const PasswordReset = () => {
         const data = {
             password,
             token,
+            user_id
           };
         dispatch(resetPassword(data))
         .unwrap()

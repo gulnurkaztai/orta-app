@@ -26,7 +26,9 @@ const resetPasswordRequest = async (userEmail) => {
 }
 
 const resetPassword = async (password) => {
-  const response = await axios.post(API_URL + "reset", password)
+  console.log("service")
+  console.log(password)
+  const response = await axios.patch(API_URL + `reset/${password.token}/${password.user_id}`)
   return response.data
 }
 

@@ -37,8 +37,10 @@ export const resetPasswordRequest = createAsyncThunk('auth/reset-password-reques
     }
 })
 
-export const resetPassword = createAsyncThunk('auth/reset-password', async(password, thunkAPI)=>{
+export const resetPassword = createAsyncThunk('auth/reset', async(password, thunkAPI)=>{
     try {
+        console.log("slice")
+        console.log(password)
         return await authService.resetPassword(password)
 
     } catch (error) {
@@ -75,6 +77,7 @@ export const getMe = createAsyncThunk('/me', async(id, thunkAPI) =>{
 export const updateProfile = createAsyncThunk('/update', async(updatedUser, thunkAPI) =>{
     try {
         const token = thunkAPI.getState().users.user.token
+        console.log(token)
         console.log("slice")
     console.log(updatedUser)
         return await authService.updateProfile(updatedUser, token)
@@ -111,9 +114,24 @@ export const authSlice = createSlice({
             state.user = action.payload
             state.isLoading=false
         })
-        // .addCase(resetPasswordRequest.fulfilled, (state, action)=>{
-        //     state.isLoading=false
-        // })
+        .addCase(resetPasswordRequest.fulfilled, (state, action)=>{
+            state.isLoading=false
+        })
+        .addCase(resetPassword.fulfilled, (state, action)=>{
+            const data = action.payload
+            console.log(data)
+            state = {
+              ...state,
+              tokens: state.tokens.map((token) => {
+                return token === action.payload.token && { ...state.user, ...data }
+              }),
+            };
+
+        })
+        .addCase(resetPassword.pending, (state, action)=>{
+            console.log(state)
+            console.log(action.payload)
+        })
         .addCase(login.rejected, (state, action)=>{
             state.isLoading=false
         })
@@ -125,11 +143,12 @@ export const authSlice = createSlice({
         })
         .addCase(updateProfile.fulfilled, (state, action)=>{
             const updatedUser = action.payload;
+            console.log(updatedUser)
             state = {
               ...state,
               users: state.users.map((user) => {
                 console.log(user._id);
-                return user._id === updatedUser._id ? { ...user, ...updatedUser } : user;
+                return user._id === action.payload.id ? { ...state.user, ...updatedUser } : user;
               }),
             };
         })
