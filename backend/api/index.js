@@ -37,10 +37,13 @@ app.use('/api/posts', require('../routes/likeRoutes'))
 
 // Middlewares
 app.use(errorHandler)
+if(process.env.PORT){
+    app.listen(PORT, ()=>{
+        console.log(`Server started on ${PORT}`)
+    })
+}
 
-app.listen(PORT, ()=>{
-    console.log(`Server started on ${PORT}`)
-})
+
 
 
 // Export the Express API
