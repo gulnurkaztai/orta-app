@@ -1,9 +1,9 @@
 const express = require("express");
 const path = require('path')
-require("dotenv").config({path:path.resolve(__dirname, '../.env')});
+require("dotenv").config({path:path.resolve(__dirname, '.env')});
 const colors = require('colors')
-const {errorHandler} = require("../middleware/errorMiddleware")
-const connectDB = require('../config/db')
+const {errorHandler} = require("./middleware/errorMiddleware")
+const connectDB = require('./config/db')
 const app = express();
 const PORT = process.env.PORT;
 const cors = require("cors");
@@ -18,9 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true, parameterLimit:50000}));
 
 // Routes
-app.use('/api/users', require('../routes/userRoutes'))
-app.use('/api/posts', require('../routes/postRoutes'))
-app.use('/api/posts', require('../routes/likeRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/posts', require('./routes/postRoutes'))
+app.use('/api/posts', require('./routes/likeRoutes'))
 
 //Serve Frontend
 // if (process.env.NODE_ENV === 'production') {
