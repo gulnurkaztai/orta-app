@@ -1,5 +1,5 @@
 {
-  "name": "orta-app",
+  "name": "orta-app", 
   "version": "1.0.0",
   "description": "Orta Community App",
   "main": "server.js",
