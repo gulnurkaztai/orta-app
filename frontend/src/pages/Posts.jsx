@@ -11,7 +11,7 @@ import Tabs from '../components/layout/Tabs'
 
 const Posts = () => {
    const {posts} = useSelector((state)=>state.posts)
-  //  console.log(posts)
+   console.log(posts)
    const dispatch = useDispatch()
 
    useEffect(() => {
@@ -31,6 +31,7 @@ const Posts = () => {
           <ul className='divide-y divide-gray-200 dark:divide-gray-700'>
           {posts.map((post)=>(
             <PostItem key={post._id} post={post}/>
+
             ))}
             </ul>
           </div>
