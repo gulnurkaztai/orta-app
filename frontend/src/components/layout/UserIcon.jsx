@@ -20,9 +20,16 @@ const UserIcon = () => {
       dispatch (logout())
       navigate('/')
     }
+    const handleOpenMenu = () => {
+      setUserMenu(true);
+  };
+
+    const handleCloseMenu = () => {
+      setUserMenu(false);
+  };
 
   return (
-    <div className='flex flex-row w-32 items-center relative ml-10'>
+    <div className='flex flex-row w-32 items-center relative ml-10' onMouseLeave={handleCloseMenu}>
         <FiMail className='basis-1/3 w-6 h-6'/>
         <MdOutlineNotificationsNone className='basis-1/3 w-6 h-6'/>
 
@@ -31,22 +38,23 @@ const UserIcon = () => {
           src={avatarPic || defaultAvatar} 
           alt="avatar" 
           onClick={(e)=>setUserMenu(!userMenu)}
+          onMouseEnter={handleOpenMenu}
           data-dropdown-toggle="dropdownId"
           />
 
 
-    <div id="dropdown" className={`${userMenu? "block" : "hidden"} absolute right-0 top-10 bg-white  rounded-lg shadow w-32 dark:bg-gray-700`} >
-        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 font-display">
-        <li>
-            <Link to={`/${_id}/me`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</Link>
-        </li>
-          <li>
-              <button className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white font-display' onClick={onLogout}>
-                Logout
-              </button>
-            </li>
-        </ul>
-    </div>
+<div id="dropdown" className={`${userMenu ? "block" : "hidden"} absolute right-0 top-10 bg-white rounded-lg shadow w-32 dark:bg-gray-700 z-10`} >
+                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 font-display">
+                    <li>
+                        <Link to={`/${_id}/me`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</Link>
+                    </li>
+                    <li>
+                        <button className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white font-display' onClick={onLogout}>
+                            Logout
+                        </button>
+                    </li>
+                </ul>
+            </div>
     </div>
   )
 }
