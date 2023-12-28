@@ -64,7 +64,7 @@ export const getUsers = createAsyncThunk('/users/getAll', async(_, thunkAPI) =>{
 export const getMe = createAsyncThunk('/me', async(id, thunkAPI) =>{
     try {
         const token = thunkAPI.getState().users.user.token
-        console.log("slice")
+        console.log("slice111111")
         console.log(token)
         return await authService.getMe(id, token)
 
@@ -74,9 +74,9 @@ export const getMe = createAsyncThunk('/me', async(id, thunkAPI) =>{
 })
 
 
-export const updateProfile = createAsyncThunk('/update', async(updatedUser, thunkAPI) =>{
+export const updateProfile = createAsyncThunk('/update', async(updatedUser, thunkAPI) => {
     try {
-        const token = thunkAPI.getState().users.user.token
+        const token = thunkAPI.getState().users.user.token;
         console.log(token)
         console.log("slice")
     console.log(updatedUser)

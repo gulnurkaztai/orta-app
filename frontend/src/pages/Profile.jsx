@@ -22,7 +22,7 @@ const Profile = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {id} = useParams()
-
+  console.log(id)
   useEffect(()=>{
     dispatch(getMe(id)).unwrap().catch(toast.error)
   },[id,dispatch] )
