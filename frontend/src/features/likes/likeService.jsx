@@ -5,7 +5,7 @@ const API_URL = '/api/posts/'
 const likePost = async(user, postId,  token)=>{
     const config={
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `${token}`
         }
     }
 

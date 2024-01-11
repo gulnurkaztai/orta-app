@@ -12,6 +12,9 @@ const cors = require("cors");
 
 //Connect to DB
 connectDB()
+// Middlewares
+app.use(errorHandler)
+
 
 app.use(cors());
 app.use(express.json());
@@ -35,8 +38,7 @@ app.use('/api/posts', require('./routes/likeRoutes'))
 //   })
 // }
 
-// Middlewares
-app.use(errorHandler)
+
 if(process.env.PORT){
     app.listen(PORT, ()=>{
         console.log(`Server started on ${PORT}`)

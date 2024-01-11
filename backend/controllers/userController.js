@@ -28,16 +28,11 @@ const registerUser = asyncHandler(async (req,res)=>{
         throw new Error('User already exists')
     }
 
-    // Hash password
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
-
-
     // Creaete User
     const user = await User.create({
         name,
         email: emailLowerCase,
-        password: hashedPassword,
+        password: bcrypt.hashSync(password, 10),
         avatarPic: '',
         bio:'',
     })
@@ -71,20 +66,20 @@ const loginUser = asyncHandler(async(req,res)=>{
 
     const {email, password} = req.body
     const user = await User.findOne({email})
-
+    let verified = bcrypt.compareSync(password, user.password)
     // Check user and password match
-    if(user && (await bcrypt.compare(password,user.password))){
-        res.status(200).json({
-            _id: user._id,
-            name: user.name,
-            email:user.email,
-            avatarPic: user.avatarPic,
-            bio:'',
-            token: generateToken(user._id)
-        })
+    if (user && verified) {
+      res.status(200).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        avatarPic: user.avatarPic,
+        bio: "",
+        token: generateToken(user._id),
+      });
     } else {
-        res.status(401)
-        throw new Error ('Invalid credentials')
+      res.status(401);
+      throw new Error("Invalid credentials");
     }
 })
 
@@ -162,8 +157,10 @@ const resetPassword = asyncHandler(async(req, res) => {
 // /api/users/me
 // Private
 const getMe = asyncHandler(async (req,res)=>{
-    const user = await User.findById(req.user.id)
+    const user = await User.findById(req.params.id)
+    
     if (!user) {
+        console.log("NO USER")
         res.status(404)
         throw new Error('User not found')
       }
@@ -178,13 +175,14 @@ const getUsers = asyncHandler(async (req, res)=>{
 })
 
 const updateProfile = asyncHandler(async (req, res)=>{
+    console.log("Updating profile")
         const user = await User.findById(req.user.id)
-
+        console.log(user)
         if (!user) {
             res.status(404)
             throw new Error('User not found')
           }
-
+          console.log(req.body)
         const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {new:true});
         res.status(200).json(updatedUser)
 })

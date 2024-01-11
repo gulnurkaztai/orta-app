@@ -6,7 +6,7 @@ const API_URL = '/api/posts/'
 const createPost = async (postData, token) =>{
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `${token}`
         }
     }
 
@@ -30,7 +30,7 @@ const getPost = async (postId) =>{
 const updatePost = async ({postId, ...updatedPost}, token) => {
     const config={
       headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `${token}`
       }
   }
     const response = await axios.patch(API_URL + `${postId}/edit`, updatedPost, config)
@@ -40,7 +40,7 @@ const updatePost = async ({postId, ...updatedPost}, token) => {
   const deletePost = async (postId, token) => {
     const config={
       headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `${token}`
       }
   }
     const response = await axios.delete(API_URL + postId, config)
