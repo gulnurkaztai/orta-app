@@ -62,6 +62,12 @@ const getUsers = async () => {
   return response.data;
 };
 
+const fetchUserProfileById = async (userId) => {
+  const response = await axios.get(`${API_URL}${userId}`);
+  return response.data; 
+};
+
+
 const getMe = async (id, token) => {
   const config = {
     headers: {
@@ -83,6 +89,7 @@ const authService = {
   resetPassword,
   getUsers,
   getMe,
+  fetchUserProfileById,
 };
 
 export default authService;

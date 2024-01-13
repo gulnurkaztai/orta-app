@@ -6,12 +6,12 @@ const Tabs = () => {
                 <li className="mr-2" role="presentation">
                     <button className="inline-block p-4 border-b-2 rounded-t-lg"  type="button" role="tab">Sen üşın</button>
                 </li>
-                <li className="mr-2" role="presentation">
+                {/* <li className="mr-2" role="presentation">
                     <button className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"  type="button" role="tab" >Soñğy</button>
                 </li>
                 <li className="mr-2" role="presentation">
                     <button className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"  type="button" role="tab" >Sūranystağy</button>
-                </li>
+                </li> */}
             </ul>
         </div>        
     </>

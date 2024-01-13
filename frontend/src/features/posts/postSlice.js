@@ -44,6 +44,17 @@ export const getPost = createAsyncThunk(
   }
 );
 
+export const fetchPostsByUser = createAsyncThunk(
+  'auth/fetchPostsByUser',
+  async (userId, thunkAPI) => {
+    try {
+      const posts = await postService.fetchPostsByUser(userId);
+      return posts;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 export const updatePost = createAsyncThunk(
   "/edit",
   async (updatedPost, thunkAPI) => {

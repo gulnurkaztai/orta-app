@@ -14,6 +14,8 @@ import Profile from './pages/Profile';
 import EditPost from './pages/EditPost';
 import PasswordResetRequest from './pages/PasswordResetRequest';
 import PasswordReset from './pages/PasswordReset';
+import UserProfile from './pages/UserProfile'; // Import the UserProfile component
+
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
           <Route path='/reset/:token/:user_id' element={<PasswordReset/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/:id/me' element={<Profile/>}/>
+          <Route path="/profile/:id" element={<UserProfile />} />
           <Route path='/create' element={<PrivateRoute><Write/></PrivateRoute>}/>
           <Route path='/posts' element={<Posts/>}/>
           <Route path='/posts/:postId' element={<Post/>}/>

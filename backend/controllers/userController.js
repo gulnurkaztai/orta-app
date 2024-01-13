@@ -186,7 +186,19 @@ const updateProfile = asyncHandler(async (req, res)=>{
         const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {new:true});
         res.status(200).json(updatedUser)
 })
+const fetchUserById = asyncHandler(async (req, res) => {
+  const userId = req.params.userId; // Get the userId from the URL parameter
 
+  // Fetch user from the database using userId
+  const user = await User.findById(userId);
+
+  if (!user) {
+      res.status(404);
+      throw new Error('User not found');
+  }
+
+  res.status(200).json(user);
+});
 
 module.exports = {
     registerUser,
@@ -195,5 +207,6 @@ module.exports = {
     resetPassword,
     getMe,
     getUsers,
-    updateProfile
+    updateProfile,
+    fetchUserById
 }

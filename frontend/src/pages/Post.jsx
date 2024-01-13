@@ -85,10 +85,10 @@ const Post = () => {
       });
   };
 
-  const fnSavePost = (id) => {
-    setIsSaved(!isSaved);
-    toast.success(savePost(id));
-  };
+  // const fnSavePost = (id) => {
+  //   setIsSaved(!isSaved);
+  //   toast.success(savePost(id));
+  // };
 
   if (!post) {
     return <Spinner />;
@@ -139,7 +139,7 @@ const Post = () => {
             </div>
 
             <div className="w-full mt-5 mb-5 flex flex-row-reverse gap-x-3.5">
-              <button
+              {/* <button
                 onClick={() => fnSavePost(postId)}
                 className="mt-0.5 flex"
               >
@@ -148,7 +148,7 @@ const Post = () => {
                 ) : (
                   <BsBookmark className="w-6 h-6 top-0" />
                 )}
-              </button>
+              </button> */}
               <button
                 onClick={() => dispatch(likePost({ user, postId }))}
                 className=""

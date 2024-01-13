@@ -8,6 +8,7 @@ const initialState = {
   users: [],
   user: user ? user : null,
   isLoading: false,
+  viewedUserProfile: null,
 };
 
 export const register = createAsyncThunk(
@@ -92,6 +93,21 @@ export const updateProfile = createAsyncThunk(
   }
 );
 
+// Async thunk for fetching a user profile by ID
+export const fetchUserProfileById = createAsyncThunk(
+  'auth/fetchUserProfileById',
+  async (userId, thunkAPI) => {
+    try {
+      const profileData = await authService.fetchUserProfileById(userId);
+      return profileData;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -158,8 +174,12 @@ export const authSlice = createSlice({
               : user;
           }),
         };
+      })
+      .addCase(fetchUserProfileById.fulfilled, (state, action) => {
+        state.viewedUserProfile = action.payload;
       });
-  },
-});
+
+    }
+  });
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;

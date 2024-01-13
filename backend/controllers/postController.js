@@ -25,6 +25,7 @@ const getPost = asyncHandler(async (req,res)=>{
     res.status(200).json(post)
 })
 
+
 // Create new post
 // POST /api/posts/create
 const createPost = asyncHandler(async (req,res)=>{
